@@ -25,6 +25,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         initView();
+        startQuiz();
         logout();
 
     }
@@ -37,6 +38,12 @@ public class HomeActivity extends AppCompatActivity {
         cvLogout = findViewById(R.id.cvLogout);
     }
 
+    private void startQuiz(){
+        cvStartQuiz.setOnClickListener(view -> {
+            startActivity(new Intent(HomeActivity.this, QuizOptionActivity.class));
+
+        });
+    }
     private void logout(){
         cvLogout.setOnClickListener(v -> {
             Dialog dialog = new Dialog(this);
