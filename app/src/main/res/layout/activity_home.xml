@@ -10,12 +10,12 @@
 
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tv_Welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:text="Chào mừng đến Hutech Quizz"
+        android:text="@string/welcome_hutech_quizz"
         android:textColor="@color/white"
         style="@style/titleTextStyle"
         android:textSize="25sp"
@@ -23,15 +23,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvUsernameHome"
+        android:id="@+id/tv_UsernameHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         tools:text="Hello, Kevin"
         android:textColor="@color/white"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintStart_toStartOf="@+id/tv_Welcome"
+        app:layout_constraintTop_toBottomOf="@+id/tv_Welcome" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
@@ -42,15 +42,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvUsernameHome">
+        app:layout_constraintTop_toBottomOf="@+id/tv_UsernameHome">
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/tv_Menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
-            android:text="Trang chủ"
+            android:text="@string/menu"
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -64,8 +64,8 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/textView4"
-            app:layout_constraintTop_toBottomOf="@+id/textView4">
+            app:layout_constraintStart_toStartOf="@+id/tv_Menu"
+            app:layout_constraintTop_toBottomOf="@+id/tv_Menu">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -73,7 +73,7 @@
 
 
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/iv_Quizz"
                     android:layout_width="@dimen/home_image_view_size"
                     android:layout_height="@dimen/home_image_view_size"
                     android:layout_marginStart="24dp"
@@ -89,11 +89,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:text="Thi Trắc nghiệm"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_Quizz"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.29"
-                    app:layout_constraintStart_toEndOf="@+id/imageView2"
-                    app:layout_constraintTop_toTopOf="@+id/imageView2" />
+                    app:layout_constraintStart_toEndOf="@+id/iv_Quizz"
+                    app:layout_constraintTop_toTopOf="@+id/iv_Quizz" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
