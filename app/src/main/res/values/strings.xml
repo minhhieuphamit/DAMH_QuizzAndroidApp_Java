@@ -1,3 +1,20 @@
 <resources>
-    <string name="app_name">Quizz_AndroidApp</string>
+    <string name="app_name">Hutech Quizz</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Mã số sinh viên</string>
+    <string name="prompt_password">Mật khẩu</string>
+    <string name="action_sign_in">Đăng Nhập</string>
+    <string name="action_sign_in_short">Đăng ký</string>
+    <string name="welcome">"Chào mừng !"</string>
+    <string name="invalid_username">Mã số không hợp lệ</string>
+    <string name="invalid_password">Mật khẩu cần dài hơn 5 ký tự</string>
+    <string name="login_failed">"Đăng nhập thất bại"</string>
+    <string name="sign_up_sub_title">Vui lòng nhập tài khoàn và mật khẩu của bạn!!!</string>
+    <string name="sign_up_title">HUTECH QUIZZ APP</string>
+    <string name="welcome_hutech_quizz">Chào mừng đến Hutech Quizz</string>
+    <string name="menu">Trang chủ</string>
+    <string name="dialog_quit_game">Bạn muốn đăng xuất ?</string>
+    <string name="no">No\n</string>
+    <string name="yes">Yes\n</string>
+
 </resources>
