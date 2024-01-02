@@ -16,7 +16,7 @@ public class QuizOptionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quiz_option);
 
         backToHome();
-        doMathTest();
+        doPreMathTest();
 
     }
 
@@ -29,11 +29,11 @@ public class QuizOptionActivity extends AppCompatActivity {
         });
     }
 
-    private void doMathTest(){
+    private void doPreMathTest(){
         findViewById(R.id.cvMath).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(QuizOptionActivity.this, MathQuizActivity.class);
+                Intent intent = new Intent(QuizOptionActivity.this, PreTestActivity.class);
                 startActivity(intent);
             }
         });

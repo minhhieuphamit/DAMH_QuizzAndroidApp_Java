@@ -1,10 +1,11 @@
-package com.example.quizz_androidapp;
+package com.example.quizz_androidapp.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.quizz_androidapp.R;
 import com.example.quizz_androidapp.ui.login.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
