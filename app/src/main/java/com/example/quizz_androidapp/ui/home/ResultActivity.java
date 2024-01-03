@@ -7,24 +7,25 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.quizz_androidapp.R;
+import com.example.quizz_androidapp.ui.MainActivity;
 
-public class MathQuizActivity extends AppCompatActivity {
+public class ResultActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_math_quiz);
+        setContentView(R.layout.activity_result);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        goResult();
+        backToMain();
         backToPrevious();
     }
 
     private void backToPrevious(){
-        findViewById(R.id.imageViewQuizMathTest).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.imageViewFinalResultQuiz).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
@@ -32,11 +33,11 @@ public class MathQuizActivity extends AppCompatActivity {
         });
     }
 
-    private void goResult(){
-        findViewById(R.id.btn_submit).setOnClickListener(new View.OnClickListener() {
+    private void backToMain(){
+        findViewById(R.id.btnFinishQuiz).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MathQuizActivity.this, ResultActivity.class);
+                Intent intent = new Intent(ResultActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });

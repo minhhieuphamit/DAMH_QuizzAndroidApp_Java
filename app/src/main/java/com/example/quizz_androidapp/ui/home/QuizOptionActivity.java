@@ -14,13 +14,16 @@ public class QuizOptionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_option);
-
-        backToHome();
-        doPreMathTest();
-
     }
 
-    private void backToHome(){
+    @Override
+    protected void onStart() {
+        super.onStart();
+        backToPrevious();
+        preMathTest();
+    }
+
+    private void backToPrevious(){
         findViewById(R.id.imageViewQuizOption).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -29,7 +32,7 @@ public class QuizOptionActivity extends AppCompatActivity {
         });
     }
 
-    private void doPreMathTest(){
+    private void preMathTest(){
         findViewById(R.id.cvMath).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

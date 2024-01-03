@@ -14,12 +14,16 @@ public class PreTestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre_test);
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
         doMathTest();
     }
 
     private void doMathTest(){
-        findViewById(R.id.btnStartExam).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_StartExam).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(PreTestActivity.this, MathQuizActivity.class);

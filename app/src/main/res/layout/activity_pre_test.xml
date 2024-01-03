@@ -44,7 +44,7 @@
         android:textSize="20sp"/>
 
     <Button
-        android:id="@+id/btnStartExam"
+        android:id="@+id/btn_StartExam"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/textViewContent3"
