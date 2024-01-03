@@ -30,6 +30,9 @@ public class HomeActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         startQuizOption();
+        clickRule();
+        clickInfo();
+        clickHistory();
         logout();
     }
 
@@ -46,6 +49,25 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(new Intent(HomeActivity.this, QuizOptionActivity.class));
         });
     }
+
+    private void clickRule(){
+        cvRule.setOnClickListener(view -> {
+            startActivity(new Intent(HomeActivity.this, RuleActivity.class));
+        });
+    }
+
+    private void clickInfo(){
+        cvAbout.setOnClickListener(view -> {
+            startActivity(new Intent(HomeActivity.this, InfoActivity.class));
+        });
+    }
+
+    private void clickHistory(){
+        cvHistory.setOnClickListener(view -> {
+            startActivity(new Intent(HomeActivity.this, HistoryActivity.class));
+        });
+    }
+
     private void logout(){
         cvLogout.setOnClickListener(v -> {
             Dialog dialog = new Dialog(this);

@@ -37,7 +37,7 @@ public class ResultActivity extends AppCompatActivity {
         findViewById(R.id.btnFinishQuiz).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ResultActivity.this, MainActivity.class);
+                Intent intent = new Intent(ResultActivity.this, HomeActivity.class);
                 startActivity(intent);
             }
         });
