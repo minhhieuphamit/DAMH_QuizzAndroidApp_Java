@@ -23,11 +23,17 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
         initView();
-        startQuiz();
-        logout();
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        startQuizOption();
+        clickRule();
+        clickInfo();
+        clickHistory();
+        logout();
     }
 
     public void initView() {
@@ -38,12 +44,30 @@ public class HomeActivity extends AppCompatActivity {
         cvLogout = findViewById(R.id.cvLogout);
     }
 
-    private void startQuiz(){
+    private void startQuizOption(){
         cvStartQuiz.setOnClickListener(view -> {
             startActivity(new Intent(HomeActivity.this, QuizOptionActivity.class));
-
         });
     }
+
+    private void clickRule(){
+        cvRule.setOnClickListener(view -> {
+            startActivity(new Intent(HomeActivity.this, RuleActivity.class));
+        });
+    }
+
+    private void clickInfo(){
+        cvAbout.setOnClickListener(view -> {
+            startActivity(new Intent(HomeActivity.this, InfoActivity.class));
+        });
+    }
+
+    private void clickHistory(){
+        cvHistory.setOnClickListener(view -> {
+            startActivity(new Intent(HomeActivity.this, HistoryActivity.class));
+        });
+    }
+
     private void logout(){
         cvLogout.setOnClickListener(v -> {
             Dialog dialog = new Dialog(this);

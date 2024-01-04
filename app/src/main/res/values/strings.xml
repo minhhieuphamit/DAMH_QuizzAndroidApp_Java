@@ -16,5 +16,9 @@
     <string name="dialog_quit_game">Bạn muốn đăng xuất ?</string>
     <string name="no">No\n</string>
     <string name="yes">Yes\n</string>
+    <string name="rule_1">Bài kiểm tra sẽ có 10 câu hỏi</string>
+    <string name="rule_2">Luật thứ 2</string>
+    <string name="rule_3">Luật thứ 3</string>
+    <string name="rule_4">Luật thứ 4</string>
 
 </resources>
