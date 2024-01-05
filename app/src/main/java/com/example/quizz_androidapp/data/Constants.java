@@ -28,14 +28,14 @@ public class Constants {
         questionList.add(questionTwo);
 
         Question questionThree = new Question(
-                2, "1*2-1",
+                3, "1*2-1",
                 "1", "2", "3", "4",
                 1
         );
         questionList.add(questionThree);
 
         Question questionFour = new Question(
-                2, "1+2-1",
+                4, "1+2-1",
 
                 "1", "2", "3", "4",
                 2
@@ -43,11 +43,46 @@ public class Constants {
         questionList.add(questionFour);
 
         Question questionFive = new Question(
-                2, "1+2+1",
+                5, "1+2+1",
                 "1", "2", "3", "4",
                 4
         );
         questionList.add(questionFive);
+
+        Question questionSix = new Question(
+                6, "1+2+1",
+                "1", "2", "3", "4",
+                4
+        );
+        questionList.add(questionSix);
+
+        Question questionSeven = new Question(
+                7, "1+2+1",
+                "1", "2", "3", "4",
+                4
+        );
+        questionList.add(questionSeven);
+
+        Question questionEight = new Question(
+                8, "1+2+1",
+                "1", "2", "3", "4",
+                4
+        );
+        questionList.add(questionEight);
+
+        Question questionNine = new Question(
+                9, "1+2+1",
+                "1", "2", "3", "4",
+                4
+        );
+        questionList.add(questionNine);
+
+        Question questionTen = new Question(
+                10, "1+2+1",
+                "1", "2", "3", "4",
+                4
+        );
+        questionList.add(questionTen);
 
         return questionList;
     }

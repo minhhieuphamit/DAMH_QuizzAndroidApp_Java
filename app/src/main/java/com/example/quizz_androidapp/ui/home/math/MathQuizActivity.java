@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -20,6 +21,8 @@ import com.example.quizz_androidapp.data.model.Question;
 import java.util.ArrayList;
 
 public class MathQuizActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private CountDownTimer countDownTimer;
     private int mCurrentPosition = 1;
     private ArrayList<Question> mQuestionList;
     private int mSelectedOptionNumber = 0;
@@ -30,6 +33,7 @@ public class MathQuizActivity extends AppCompatActivity implements View.OnClickL
     TextView tvOptionTwo ;
     TextView tvOptionThree ;
     TextView tvOptionFour;
+    TextView tvTimer;
     Button btnSubmit;
 
     @Override
@@ -37,6 +41,10 @@ public class MathQuizActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_math_quiz);
         initView();
+
+        long countdownMillis = 1800000;
+        startCountdownTimer(countdownMillis);
+
 
         mQuestionList = Constants.getQuestions();
         setQuestion();
@@ -187,6 +195,7 @@ public class MathQuizActivity extends AppCompatActivity implements View.OnClickL
         tvOptionThree = findViewById(R.id.tv_optionThree);
         tvOptionFour = findViewById(R.id.tv_optionFour);
         btnSubmit = findViewById(R.id.btn_submit);
+        tvTimer = findViewById(R.id.tv_timer);
     }
 
     private void backToPrevious(){
@@ -208,4 +217,36 @@ public class MathQuizActivity extends AppCompatActivity implements View.OnClickL
             }
         });
     }
+    private void startCountdownTimer(long millisInFuture) {
+        countDownTimer = new CountDownTimer(millisInFuture, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                // Cập nhật TextView với thời gian còn lại
+                updateTimerText(millisUntilFinished);
+            }
+
+            @Override
+            public void onFinish() {
+                // Xử lý khi đếm ngược kết thúc (ví dụ: hiển thị hết giờ)
+                tvTimer.setText("00:00");
+                // Thực hiện các hành động khi thời gian kết thúc
+            }
+        }.start();
+    }
+
+    private void updateTimerText(long millisUntilFinished) {
+        int seconds = (int) (millisUntilFinished / 1000);
+        String timeLeftFormatted = String.format("%02d:%02d", seconds / 60, seconds % 60);
+        tvTimer.setText(timeLeftFormatted);
+    }
+
+    // Override onDestroy để đảm bảo việc hủy đếm ngược khi Activity bị hủy
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+        }
+    }
+
 }

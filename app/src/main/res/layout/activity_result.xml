@@ -93,7 +93,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView10"
         app:layout_constraintStart_toEndOf="@+id/textView10"
         app:layout_constraintTop_toTopOf="@+id/textView10"
-        tools:text="Math" />
+        android:text="Math" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnFinishQuiz"
