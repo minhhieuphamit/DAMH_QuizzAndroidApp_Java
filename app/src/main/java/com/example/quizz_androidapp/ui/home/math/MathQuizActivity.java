@@ -42,7 +42,8 @@ public class MathQuizActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_math_quiz);
         initView();
 
-        long countdownMillis = 1800000;
+//        long countdownMillis = 1800000;
+        long countdownMillis = 10000;
         startCountdownTimer(countdownMillis);
 
 
@@ -229,6 +230,8 @@ public class MathQuizActivity extends AppCompatActivity implements View.OnClickL
             public void onFinish() {
                 // Xử lý khi đếm ngược kết thúc (ví dụ: hiển thị hết giờ)
                 tvTimer.setText("00:00");
+                Intent intent = new Intent(MathQuizActivity.this, ResultMathActivity.class);
+                startActivity(intent);
                 // Thực hiện các hành động khi thời gian kết thúc
             }
         }.start();
