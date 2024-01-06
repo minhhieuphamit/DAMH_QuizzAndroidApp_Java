@@ -3,6 +3,8 @@ package com.example.quizz_androidapp.ui.home.math;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -42,10 +44,8 @@ public class MathQuizActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_math_quiz);
         initView();
 
-//        long countdownMillis = 1800000;
-        long countdownMillis = 10000;
+        long countdownMillis = 600000;
         startCountdownTimer(countdownMillis);
-
 
         mQuestionList = Constants.getQuestions();
         setQuestion();
@@ -203,9 +203,29 @@ public class MathQuizActivity extends AppCompatActivity implements View.OnClickL
         findViewById(R.id.imageViewQuizMathTest).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                showExitConfirmationDialog();
             }
         });
+    }
+    private void showExitConfirmationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Bạn có muốn thoát khỏi bài thi này không? Mọi tiến trình bài thi sẽ bị hủy")
+                .setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Đóng dialog và kết thúc Activity nếu người dùng chọn "Có"
+                        dialog.dismiss();
+                        finish();
+                    }
+                })
+                .setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Đóng dialog nếu người dùng chọn "Không"
+                        dialog.dismiss();
+                    }
+                })
+                .show();
     }
 
     private void goResult(){
