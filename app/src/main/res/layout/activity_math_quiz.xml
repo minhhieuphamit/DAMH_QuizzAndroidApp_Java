@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".ui.home.MathQuizActivity">
+    tools:context=".ui.home.math.MathQuizActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,8 +27,6 @@
                 android:layout_marginTop="5dp"
                 android:background="?selectableItemBackgroundBorderless"
                 android:padding="4dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/arrow"
                 app:tint="@color/black" />
 
@@ -39,10 +37,17 @@
                 android:layout_marginStart="24dp"
                 android:text="Math Test"
                 style="@style/titleTextStyle"
-                app:layout_constraintBottom_toBottomOf="@+id/imageViewQuizOption"
-                app:layout_constraintStart_toEndOf="@+id/imageViewQuizOption"
-                app:layout_constraintTop_toTopOf="@+id/imageViewQuizOption"
                 android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/tv_timer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="100dp"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                tools:text="00:00" />
 
         </LinearLayout>
 
@@ -60,7 +65,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:max="5"
+                android:max="10"
                 android:minHeight="50dp"
                 android:progress="1"
                 style="?android:attr/progressBarStyleHorizontal"
@@ -75,7 +80,7 @@
                 android:textSize="16sp"
                 android:gravity="center"
                 android:padding="16dp"
-                tools:text="0/5">
+                tools:text="0/10">
 
             </TextView>
 

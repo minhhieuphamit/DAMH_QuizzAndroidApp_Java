@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Hutech Quizz</string>
     <string name="title_activity_login">LoginActivity</string>
-    <string name="prompt_email">Mã số sinh viên</string>
+    <string name="prompt_email">Email</string>
     <string name="prompt_password">Mật khẩu</string>
     <string name="action_sign_in">Đăng Nhập</string>
     <string name="action_sign_in_short">Đăng ký</string>
@@ -20,5 +20,6 @@
     <string name="rule_2">Luật thứ 2</string>
     <string name="rule_3">Luật thứ 3</string>
     <string name="rule_4">Luật thứ 4</string>
+    <string name="mathematics">Mathematics</string>
 
 </resources>

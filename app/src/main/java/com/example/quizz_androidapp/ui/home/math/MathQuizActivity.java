@@ -1,12 +1,15 @@
-package com.example.quizz_androidapp.ui.home;
+package com.example.quizz_androidapp.ui.home.math;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -21,6 +24,7 @@ import java.util.ArrayList;
 
 public class MathQuizActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private CountDownTimer countDownTimer;
     private int mCurrentPosition = 1;
     private ArrayList<Question> mQuestionList;
     private int mSelectedOptionNumber = 0;
@@ -31,6 +35,7 @@ public class MathQuizActivity extends AppCompatActivity implements View.OnClickL
     TextView tvOptionTwo ;
     TextView tvOptionThree ;
     TextView tvOptionFour;
+    TextView tvTimer;
     Button btnSubmit;
 
     @Override
@@ -38,6 +43,9 @@ public class MathQuizActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_math_quiz);
         initView();
+
+        long countdownMillis = 600000;
+        startCountdownTimer(countdownMillis);
 
         mQuestionList = Constants.getQuestions();
         setQuestion();
@@ -188,24 +196,80 @@ public class MathQuizActivity extends AppCompatActivity implements View.OnClickL
         tvOptionThree = findViewById(R.id.tv_optionThree);
         tvOptionFour = findViewById(R.id.tv_optionFour);
         btnSubmit = findViewById(R.id.btn_submit);
+        tvTimer = findViewById(R.id.tv_timer);
     }
 
     private void backToPrevious(){
         findViewById(R.id.imageViewQuizMathTest).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                showExitConfirmationDialog();
             }
         });
+    }
+    private void showExitConfirmationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Bạn có muốn thoát khỏi bài thi này không? Mọi tiến trình bài thi sẽ bị hủy")
+                .setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Đóng dialog và kết thúc Activity nếu người dùng chọn "Có"
+                        dialog.dismiss();
+                        finish();
+                    }
+                })
+                .setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Đóng dialog nếu người dùng chọn "Không"
+                        dialog.dismiss();
+                    }
+                })
+                .show();
     }
 
     private void goResult(){
         findViewById(R.id.btn_submit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MathQuizActivity.this, ResultActivity.class);
+                Intent intent = new Intent(MathQuizActivity.this, ResultMathActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
+    private void startCountdownTimer(long millisInFuture) {
+        countDownTimer = new CountDownTimer(millisInFuture, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                // Cập nhật TextView với thời gian còn lại
+                updateTimerText(millisUntilFinished);
+            }
+
+            @Override
+            public void onFinish() {
+                // Xử lý khi đếm ngược kết thúc (ví dụ: hiển thị hết giờ)
+                tvTimer.setText("00:00");
+                Intent intent = new Intent(MathQuizActivity.this, ResultMathActivity.class);
+                startActivity(intent);
+                // Thực hiện các hành động khi thời gian kết thúc
+            }
+        }.start();
+    }
+
+    private void updateTimerText(long millisUntilFinished) {
+        int seconds = (int) (millisUntilFinished / 1000);
+        String timeLeftFormatted = String.format("%02d:%02d", seconds / 60, seconds % 60);
+        tvTimer.setText(timeLeftFormatted);
+    }
+
+    // Override onDestroy để đảm bảo việc hủy đếm ngược khi Activity bị hủy
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+        }
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.example.quizz_androidapp.ui.home;
+package com.example.quizz_androidapp.ui.home.math;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,7 +8,7 @@ import android.view.View;
 
 import com.example.quizz_androidapp.R;
 
-public class PreTestActivity extends AppCompatActivity {
+public class PreTestMathActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +26,9 @@ public class PreTestActivity extends AppCompatActivity {
         findViewById(R.id.btn_StartExam).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PreTestActivity.this, MathQuizActivity.class);
-                startActivity(intent);
+                    Intent intent = new Intent(PreTestMathActivity.this, MathQuizActivity.class);
+                    startActivity(intent);
+                    finish();
             }
         });
     }

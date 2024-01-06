@@ -7,9 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.quizz_androidapp.R;
+import com.example.quizz_androidapp.ui.home.math.PreTestMathActivity;
 
 public class QuizOptionActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,8 +36,9 @@ public class QuizOptionActivity extends AppCompatActivity {
         findViewById(R.id.cvMath).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(QuizOptionActivity.this, PreTestActivity.class);
+                Intent intent = new Intent(QuizOptionActivity.this, PreTestMathActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

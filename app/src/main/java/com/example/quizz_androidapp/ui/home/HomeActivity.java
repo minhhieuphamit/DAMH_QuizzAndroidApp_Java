@@ -1,9 +1,12 @@
 package com.example.quizz_androidapp.ui.home;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -24,6 +27,14 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         initView();
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                // Xử lý sự kiện "Back" ở đây
+                showExitConfirmationDialog();
+            }
+        };
     }
 
     @Override
@@ -86,6 +97,28 @@ public class HomeActivity extends AppCompatActivity {
 
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         });
+    }
+
+    private void showExitConfirmationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Bạn có muốn thoát ứng dụng không?")
+                .setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Thoát ứng dụng nếu người dùng chọn "Có"
+                        Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                })
+                .setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Đóng dialog nếu người dùng chọn "Không"
+                        dialog.dismiss();
+                    }
+                })
+                .show();
     }
 
 }

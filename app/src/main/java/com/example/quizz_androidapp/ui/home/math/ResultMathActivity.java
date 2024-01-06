@@ -1,20 +1,25 @@
-package com.example.quizz_androidapp.ui.home;
+package com.example.quizz_androidapp.ui.home.math;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.quizz_androidapp.R;
-import com.example.quizz_androidapp.ui.MainActivity;
 
-public class ResultActivity extends AppCompatActivity {
+public class ResultMathActivity extends AppCompatActivity {
+    TextView subject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+        initView();
+    }
+
+    public void initView(){
+        subject = findViewById(R.id.textView16);
     }
 
     @Override
@@ -37,8 +42,7 @@ public class ResultActivity extends AppCompatActivity {
         findViewById(R.id.btnFinishQuiz).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ResultActivity.this, HomeActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
     }
