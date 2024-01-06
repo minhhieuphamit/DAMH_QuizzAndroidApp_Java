@@ -5,7 +5,7 @@
     <string name="prompt_password">Mật khẩu</string>
     <string name="action_sign_in">Đăng Nhập</string>
     <string name="action_sign_in_short">Đăng ký</string>
-    <string name="welcome">"Chào mừng !"</string>
+    <string name="welcome">"Chào mừng"</string>
     <string name="invalid_username">Mã số không hợp lệ</string>
     <string name="invalid_password">Mật khẩu cần dài hơn 5 ký tự</string>
     <string name="login_failed">"Đăng nhập thất bại"</string>
