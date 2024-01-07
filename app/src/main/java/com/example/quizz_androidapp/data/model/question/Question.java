@@ -1,4 +1,4 @@
-package com.example.quizz_androidapp.data.model;
+package com.example.quizz_androidapp.data.model.question;
 
 public class Question {
     int id;
@@ -8,6 +8,7 @@ public class Question {
     String optionThree;
     String optionFour;
     int correctAnswer;
+
 
     public  Question(){
 
