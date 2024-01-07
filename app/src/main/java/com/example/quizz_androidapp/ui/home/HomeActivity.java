@@ -13,21 +13,38 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.quizz_androidapp.R;
+import com.example.quizz_androidapp.data.model.login.User;
 import com.example.quizz_androidapp.ui.login.LoginActivity;
 
 public class HomeActivity extends AppCompatActivity {
 
     CardView cvStartQuiz, cvRule, cvHistory, cvLogout, cvAbout;
+    TextView tvUserName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
         initView();
-        startQuiz();
-        logout();
 
+        Bundle bundleReceive = getIntent().getExtras();
+        if(bundleReceive != null){
+            User user = (User) bundleReceive.get("user");
+            if(user != null){
+                String userFL = "Xin chào, " + user.getLastName() + " " + user.getFirstName();
+                tvUserName.setText(userFL);
+            }
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        startQuizOption();
+        clickRule();
+        clickInfo();
+        clickHistory();
+        logout();
     }
 
     public void initView() {
@@ -36,14 +53,33 @@ public class HomeActivity extends AppCompatActivity {
         cvAbout = findViewById(R.id.cvEditPassword);
         cvHistory = findViewById(R.id.cvHistory);
         cvLogout = findViewById(R.id.cvLogout);
+        tvUserName = findViewById(R.id.tv_UsernameHome);
     }
 
-    private void startQuiz(){
+    private void startQuizOption(){
         cvStartQuiz.setOnClickListener(view -> {
             startActivity(new Intent(HomeActivity.this, QuizOptionActivity.class));
-
         });
     }
+
+    private void clickRule(){
+        cvRule.setOnClickListener(view -> {
+            startActivity(new Intent(HomeActivity.this, RuleActivity.class));
+        });
+    }
+
+    private void clickInfo(){
+        cvAbout.setOnClickListener(view -> {
+            startActivity(new Intent(HomeActivity.this, InfoActivity.class));
+        });
+    }
+
+    private void clickHistory(){
+        cvHistory.setOnClickListener(view -> {
+            startActivity(new Intent(HomeActivity.this, HistoryActivity.class));
+        });
+    }
+
     private void logout(){
         cvLogout.setOnClickListener(v -> {
             Dialog dialog = new Dialog(this);
@@ -63,5 +99,4 @@ public class HomeActivity extends AppCompatActivity {
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         });
     }
-
 }

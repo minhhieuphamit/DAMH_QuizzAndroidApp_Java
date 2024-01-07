@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.InfoActivity"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/imageInfo"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:padding="4dp"
+        android:layout_marginTop="6dp"
+        app:srcCompat="@drawable/arrow"
+        app:tint="@color/black" />
+
+    <TextView
+        android:id="@+id/result_"
+        style="@style/titleTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_toEndOf="@+id/imageInfo"
+        android:text="Thông tin" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profileImage"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_below="@id/result_"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/book"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:id="@+id/usernameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@id/profileImage"
+        android:layout_marginTop="20dp"
+        android:hint="Họ và Tên"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <EditText
+        android:id="@+id/emailEditText"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@id/usernameEditText"
+        android:layout_marginTop="10dp"
+        android:hint="Email"
+        android:textSize="16sp"
+        android:inputType="textEmailAddress"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@id/emailEditText"
+        android:layout_marginTop="10dp"
+        android:hint="Password"
+        android:textSize="16sp"
+        android:inputType="textPassword"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <Button
+        android:id="@+id/acceptChangesButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/passwordEditText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Lưu thay đổi" />
+
+</RelativeLayout>
