@@ -29,46 +29,68 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profileImage"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_below="@id/result_"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/tung"
+        android:src="@drawable/yamayka"
         android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/tv_info_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profileImage"
+        android:layout_marginTop="30dp"
+        android:text="Họ và Tên"
+        android:textSize="24sp"/>
 
     <EditText
         android:id="@+id/et_info_username"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_below="@id/profileImage"
-        android:layout_marginTop="20dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/tv_info_username"
         android:hint="Họ và Tên"
-        android:textSize="18sp"
-        android:textStyle="bold"
+        android:textSize="24sp"
         android:clickable="true"
         android:focusable="true" />
+
+    <TextView
+        android:id="@+id/tv_info_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_info_username"
+        android:layout_marginTop="30dp"
+        android:text="Email"
+        android:textSize="24sp"/>
 
     <EditText
         android:id="@+id/et_info_email"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_below="@id/et_info_username"
-        android:layout_marginTop="10dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/tv_info_email"
         android:hint="Email"
-        android:textSize="16sp"
-        android:textStyle="bold"
+        android:textSize="24sp"
         android:inputType="textEmailAddress"
         android:clickable="true"
         android:focusable="true" />
 
+    <TextView
+        android:id="@+id/tv_info_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_info_email"
+        android:layout_marginTop="30dp"
+        android:text="Mật khẩu"
+        android:textSize="24sp"/>
+
     <EditText
         android:id="@+id/et_info_password"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_below="@id/et_info_email"
-        android:layout_marginTop="10dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/tv_info_password"
         android:hint="Password"
-        android:textSize="16sp"
+        android:textSize="24sp"
         android:clickable="true"
         android:focusable="true" />
 
@@ -78,7 +100,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/et_info_password"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="30dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
         android:text="Lưu thay đổi" />
 
 </RelativeLayout>
