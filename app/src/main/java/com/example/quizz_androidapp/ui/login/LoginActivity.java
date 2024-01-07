@@ -10,9 +10,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.quizz_androidapp.R;
 import com.example.quizz_androidapp.api.APIService;
-import com.example.quizz_androidapp.data.model.LoginRequest;
-import com.example.quizz_androidapp.data.model.User;
-import com.example.quizz_androidapp.data.model.UserResponse;
+import com.example.quizz_androidapp.data.model.login.LoginRequest;
+import com.example.quizz_androidapp.data.model.login.User;
+import com.example.quizz_androidapp.data.model.login.UserResponse;
 import com.example.quizz_androidapp.ui.home.HomeActivity;
 
 import retrofit2.Call;
@@ -23,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText email;
     EditText password;
     Button btnLogin;
+    Button btnRegister;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,9 +33,16 @@ public class LoginActivity extends AppCompatActivity {
         email = findViewById(R.id.et_Email);
         password = findViewById(R.id.et_Password);
         btnLogin = findViewById(R.id.btn_Login);
+        btnRegister = findViewById(R.id.btn_Register);
 
         btnLogin.setOnClickListener(view -> loginUser());
+        btnRegister.setOnClickListener(View -> registerUser());
 
+    }
+
+    private void registerUser() {
+        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+        startActivity(intent);
     }
 
     private boolean isValidEmail(String email) {
