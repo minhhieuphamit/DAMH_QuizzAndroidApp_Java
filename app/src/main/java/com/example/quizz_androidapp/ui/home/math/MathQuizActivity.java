@@ -23,19 +23,13 @@ import com.example.quizz_androidapp.data.model.Question;
 import java.util.ArrayList;
 
 public class MathQuizActivity extends AppCompatActivity implements View.OnClickListener {
-
     private CountDownTimer countDownTimer;
     private int mCurrentPosition = 1;
     private ArrayList<Question> mQuestionList;
     private int mSelectedOptionNumber = 0;
+    private int correctQuestion = 0;
     ProgressBar progressBar ;
-    TextView tvProgressBar ;
-    TextView tvQuestion ;
-    TextView tvOptionOne ;
-    TextView tvOptionTwo ;
-    TextView tvOptionThree ;
-    TextView tvOptionFour;
-    TextView tvTimer;
+    TextView tvProgressBar, tvQuestion, tvOptionOne, tvOptionTwo, tvOptionThree, tvOptionFour, tvTimer;
     Button btnSubmit;
 
     @Override
@@ -55,6 +49,75 @@ public class MathQuizActivity extends AppCompatActivity implements View.OnClickL
     protected void onStart() {
         super.onStart();
         backToPrevious();
+    }
+
+    public void initView(){
+        progressBar = findViewById(R.id.progressBar);
+        tvProgressBar = findViewById(R.id.tv_progressBar);
+        tvQuestion = findViewById(R.id.tv_question);
+        tvOptionOne = findViewById(R.id.tv_optionOne);
+        tvOptionTwo = findViewById(R.id.tv_optionTwo);
+        tvOptionThree = findViewById(R.id.tv_optionThree);
+        tvOptionFour = findViewById(R.id.tv_optionFour);
+        btnSubmit = findViewById(R.id.btn_submit);
+        tvTimer = findViewById(R.id.tv_timer);
+    }
+
+    private void backToPrevious(){
+        findViewById(R.id.imageViewQuizMathTest).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showExitConfirmationDialog();
+            }
+        });
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v != null) {
+            int viewId = v.getId();
+
+            if (viewId == R.id.tv_optionOne) {
+                if (tvOptionOne != null) {
+                    selectedOptionView(tvOptionOne, 1);
+                }
+            } else if (viewId == R.id.tv_optionTwo) {
+                if (tvOptionTwo != null) {
+                    selectedOptionView(tvOptionTwo, 2);
+                }
+            } else if (viewId == R.id.tv_optionThree) {
+                if (tvOptionThree != null) {
+                    selectedOptionView(tvOptionThree, 3);
+                }
+            } else if (viewId == R.id.tv_optionFour) {
+                if (tvOptionFour != null) {
+                    selectedOptionView(tvOptionFour, 4);
+                }
+            } else if (viewId == R.id.btn_submit) {
+                if (mSelectedOptionNumber == 0) {
+                    mCurrentPosition++;
+                    if (mCurrentPosition <= mQuestionList.size()) {
+                        setQuestion();
+                    } else {
+                        Toast.makeText(this, "You're Done", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Question question = mQuestionList.get(mCurrentPosition - 1);
+                    if (question.getCorrectAnswer() != mSelectedOptionNumber) {
+                        answerView(mSelectedOptionNumber, R.drawable.wrong_option_choice);
+                    }
+                    answerView(question.getCorrectAnswer(), R.drawable.correct_option_choice);
+
+                    if (mCurrentPosition == mQuestionList.size()) {
+                        btnSubmit.setText("FINISH");
+                        goResult();
+                    } else {
+                        btnSubmit.setText("NEXT");
+                    }
+                    mSelectedOptionNumber = 0;
+                }
+            }
+        }
     }
 
     private void setQuestion() {
@@ -114,54 +177,6 @@ public class MathQuizActivity extends AppCompatActivity implements View.OnClickL
         tv.setBackground(ContextCompat.getDrawable(this, R.drawable.option_choice_selected));
     }
 
-    @Override
-    public void onClick(View v) {
-        if (v != null) {
-            int viewId = v.getId();
-
-            if (viewId == R.id.tv_optionOne) {
-                if (tvOptionOne != null) {
-                    selectedOptionView(tvOptionOne, 1);
-                }
-            } else if (viewId == R.id.tv_optionTwo) {
-                if (tvOptionTwo != null) {
-                    selectedOptionView(tvOptionTwo, 2);
-                }
-            } else if (viewId == R.id.tv_optionThree) {
-                if (tvOptionThree != null) {
-                    selectedOptionView(tvOptionThree, 3);
-                }
-            } else if (viewId == R.id.tv_optionFour) {
-                if (tvOptionFour != null) {
-                    selectedOptionView(tvOptionFour, 4);
-                }
-            } else if (viewId == R.id.btn_submit) {
-                if (mSelectedOptionNumber == 0) {
-                    mCurrentPosition++;
-                    if (mCurrentPosition <= mQuestionList.size()) {
-                        setQuestion();
-                    } else {
-                        Toast.makeText(this, "You're Done", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Question question = mQuestionList.get(mCurrentPosition - 1);
-                    if (question.getCorrectAnswer() != mSelectedOptionNumber) {
-                        answerView(mSelectedOptionNumber, R.drawable.wrong_option_choice);
-                    }
-                    answerView(question.getCorrectAnswer(), R.drawable.correct_option_choice);
-
-                    if (mCurrentPosition == mQuestionList.size()) {
-                        btnSubmit.setText("FINISH");
-                        goResult();
-                    } else {
-                        btnSubmit.setText("NEXT");
-                    }
-                    mSelectedOptionNumber = 0;
-                }
-            }
-        }
-    }
-
     private void answerView(int answer, int drawableView) {
         switch (answer) {
             case 1:
@@ -187,26 +202,6 @@ public class MathQuizActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    public void initView(){
-        progressBar = findViewById(R.id.progressBar);
-        tvProgressBar = findViewById(R.id.tv_progressBar);
-        tvQuestion = findViewById(R.id.tv_question);
-        tvOptionOne = findViewById(R.id.tv_optionOne);
-        tvOptionTwo = findViewById(R.id.tv_optionTwo);
-        tvOptionThree = findViewById(R.id.tv_optionThree);
-        tvOptionFour = findViewById(R.id.tv_optionFour);
-        btnSubmit = findViewById(R.id.btn_submit);
-        tvTimer = findViewById(R.id.tv_timer);
-    }
-
-    private void backToPrevious(){
-        findViewById(R.id.imageViewQuizMathTest).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showExitConfirmationDialog();
-            }
-        });
-    }
     private void showExitConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Bạn có muốn thoát khỏi bài thi này không? Mọi tiến trình bài thi sẽ bị hủy")
@@ -238,21 +233,19 @@ public class MathQuizActivity extends AppCompatActivity implements View.OnClickL
             }
         });
     }
+
     private void startCountdownTimer(long millisInFuture) {
         countDownTimer = new CountDownTimer(millisInFuture, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                // Cập nhật TextView với thời gian còn lại
                 updateTimerText(millisUntilFinished);
             }
 
             @Override
             public void onFinish() {
-                // Xử lý khi đếm ngược kết thúc (ví dụ: hiển thị hết giờ)
                 tvTimer.setText("00:00");
                 Intent intent = new Intent(MathQuizActivity.this, ResultMathActivity.class);
                 startActivity(intent);
-                // Thực hiện các hành động khi thời gian kết thúc
             }
         }.start();
     }
@@ -263,7 +256,6 @@ public class MathQuizActivity extends AppCompatActivity implements View.OnClickL
         tvTimer.setText(timeLeftFormatted);
     }
 
-    // Override onDestroy để đảm bảo việc hủy đếm ngược khi Activity bị hủy
     @Override
     protected void onDestroy() {
         super.onDestroy();

@@ -16,11 +16,15 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.quizz_androidapp.R;
+import com.example.quizz_androidapp.data.model.User;
 import com.example.quizz_androidapp.ui.login.LoginActivity;
+
+import java.time.chrono.IsoChronology;
 
 public class HomeActivity extends AppCompatActivity {
 
     CardView cvStartQuiz, cvRule, cvHistory, cvLogout, cvAbout;
+    TextView tvUserName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,13 +32,14 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         initView();
 
-        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
-            @Override
-            public void handleOnBackPressed() {
-                // Xử lý sự kiện "Back" ở đây
-                showExitConfirmationDialog();
+        Bundle bundleReceive = getIntent().getExtras();
+        if(bundleReceive != null){
+            User user = (User) bundleReceive.get("user");
+            if(user != null){
+                String userFL = "Xin chào, " + user.getLastName() + " " + user.getFirstName();
+                tvUserName.setText(userFL);
             }
-        };
+        }
     }
 
     @Override
@@ -53,6 +58,7 @@ public class HomeActivity extends AppCompatActivity {
         cvAbout = findViewById(R.id.cvEditPassword);
         cvHistory = findViewById(R.id.cvHistory);
         cvLogout = findViewById(R.id.cvLogout);
+        tvUserName = findViewById(R.id.tv_UsernameHome);
     }
 
     private void startQuizOption(){
@@ -98,27 +104,4 @@ public class HomeActivity extends AppCompatActivity {
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         });
     }
-
-    private void showExitConfirmationDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Bạn có muốn thoát ứng dụng không?")
-                .setPositiveButton("Có", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Thoát ứng dụng nếu người dùng chọn "Có"
-                        Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                })
-                .setNegativeButton("Không", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Đóng dialog nếu người dùng chọn "Không"
-                        dialog.dismiss();
-                    }
-                })
-                .show();
-    }
-
 }
