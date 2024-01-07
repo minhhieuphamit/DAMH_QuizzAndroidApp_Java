@@ -2,7 +2,9 @@ package com.example.quizz_androidapp.data.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     public User(String userId, String email, String password, String firstName, String lastName, String role, boolean active, String createdAt, String updatedAt, int version) {
         this.userId = userId;
         this.email = email;

@@ -1,5 +1,6 @@
 package com.example.quizz_androidapp.ui.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -9,8 +10,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.quizz_androidapp.R;
 import com.example.quizz_androidapp.api.APIService;
+import com.example.quizz_androidapp.data.model.LoginRequest;
 import com.example.quizz_androidapp.data.model.User;
 import com.example.quizz_androidapp.data.model.UserResponse;
+import com.example.quizz_androidapp.ui.home.HomeActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -48,24 +51,24 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         if (!isValidEmail(enteredEmail)) {
-            Toast.makeText(this, "Hãy nhập đúng email", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Hãy nhập đúng định dạng email", Toast.LENGTH_SHORT).show();
             return;
         }
 
 
-        Call<UserResponse> call = APIService.apiService.login(enteredEmail, enteredPassword);
-        Log.e("Email",enteredEmail);
-        Log.e("Password",enteredPassword);
+        Call<UserResponse> call = APIService.apiService.login(new LoginRequest(enteredEmail,enteredPassword));
         call.enqueue(new Callback<UserResponse>() {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.isSuccessful()) {
                     User user = response.body().getData();
                     if (user != null) {
-                        Log.v("Email", user.getEmail());
-                        Log.v("Password", user.getPassword());
                         Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                        // TODO: Chuyển sang Home Activity
+                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("user", user);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
                     } else {
                         Toast.makeText(LoginActivity.this, "Invalid response from server", Toast.LENGTH_SHORT).show();
                     }
