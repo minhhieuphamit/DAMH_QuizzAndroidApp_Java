@@ -33,6 +33,7 @@ public class HomeActivity extends AppCompatActivity {
             if(user != null){
                 String userFL = "Xin chào, " + user.getLastName() + " " + user.getFirstName();
                 tvUserName.setText(userFL);
+                clickInfo(user);
             }
         }
     }
@@ -42,7 +43,6 @@ public class HomeActivity extends AppCompatActivity {
         super.onStart();
         startQuizOption();
         clickRule();
-        clickInfo();
         clickHistory();
         logout();
     }
@@ -68,9 +68,13 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-    private void clickInfo(){
+    private void clickInfo(User user){
         cvAbout.setOnClickListener(view -> {
-            startActivity(new Intent(HomeActivity.this, InfoActivity.class));
+            Intent intentInfo = new Intent(HomeActivity.this, InfoActivity.class);
+            Bundle bundleInfo = new Bundle();
+            bundleInfo.putSerializable("user info", user);
+            intentInfo.putExtras(bundleInfo);
+            startActivity(intentInfo);
         });
     }
 
