@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import com.example.quizz_androidapp.R;
 import com.example.quizz_androidapp.data.Constants;
-import com.example.quizz_androidapp.data.model.Question;
+import com.example.quizz_androidapp.data.model.question.Question;
 
 import java.util.ArrayList;
 

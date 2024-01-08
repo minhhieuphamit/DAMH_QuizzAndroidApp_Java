@@ -1,7 +1,6 @@
 package com.example.quizz_androidapp.data;
 
-import com.example.quizz_androidapp.R;
-import com.example.quizz_androidapp.data.model.Question;
+import com.example.quizz_androidapp.data.model.question.Question;
 
 import java.util.ArrayList;
 

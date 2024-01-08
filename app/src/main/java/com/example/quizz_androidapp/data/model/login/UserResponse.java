@@ -1,5 +1,6 @@
-package com.example.quizz_androidapp.data.model;
+package com.example.quizz_androidapp.data.model.login;
 
+import com.example.quizz_androidapp.data.model.login.User;
 import com.google.gson.annotations.SerializedName;
 
 public class UserResponse {

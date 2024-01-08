@@ -1,12 +1,9 @@
 package com.example.quizz_androidapp.ui.home;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -16,10 +13,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.quizz_androidapp.R;
-import com.example.quizz_androidapp.data.model.User;
+import com.example.quizz_androidapp.data.model.login.User;
 import com.example.quizz_androidapp.ui.login.LoginActivity;
-
-import java.time.chrono.IsoChronology;
 
 public class HomeActivity extends AppCompatActivity {
 
