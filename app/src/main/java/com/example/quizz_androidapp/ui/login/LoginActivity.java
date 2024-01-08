@@ -1,6 +1,7 @@
 package com.example.quizz_androidapp.ui.login;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -49,6 +50,12 @@ public class LoginActivity extends AppCompatActivity {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
+    private void saveTokenToSharedPreferences(String token) {
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("accessToken", token);
+        editor.apply();
+    }
     private void loginUser() {
         String enteredEmail = email.getText().toString().trim();
         String enteredPassword = password.getText().toString().trim();
@@ -71,6 +78,8 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     User user = response.body().getData();
                     if (user != null) {
+                        String accessToken = response.body().getToken().getAccess().getToken();
+                        saveTokenToSharedPreferences(accessToken);
                         Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                         Bundle bundle = new Bundle();
@@ -93,5 +102,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
 
 }
