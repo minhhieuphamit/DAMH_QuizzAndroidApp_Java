@@ -21,10 +21,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
-    EditText email;
-    EditText password;
-    Button btnLogin;
-    Button btnRegister;
+    EditText email, password;
+    Button btnLogin, btnRegister;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,7 +68,6 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Hãy nhập đúng định dạng email", Toast.LENGTH_SHORT).show();
             return;
         }
-
 
         Call<UserResponse> call = APIService.apiService.login(new LoginRequest(enteredEmail,enteredPassword));
         call.enqueue(new Callback<UserResponse>() {

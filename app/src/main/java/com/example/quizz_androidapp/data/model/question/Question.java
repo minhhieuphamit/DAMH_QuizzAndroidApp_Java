@@ -9,11 +9,6 @@ public class Question {
     String optionFour;
     int correctAnswer;
 
-
-    public  Question(){
-
-    }
-
     public Question(int id, String question, String optionOne, String optionTwo, String optionThree, String optionFour, int correctAnswer) {
         this.id = id;
         this.question = question;
