@@ -33,8 +33,6 @@ public class UserResponse {
         return token;
     }
 
-
-
     public static class TokenInfo {
 
         @SerializedName("access")
