@@ -1,6 +1,7 @@
 package com.example.quizz_androidapp.ui.home;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -35,8 +36,6 @@ public class QuizOptionActivity extends AppCompatActivity {
         super.onStart();
         getAllSubjects();
         backToPrevious();
-        preMathTest();
-
     }
 
     private void backToPrevious(){
@@ -48,11 +47,12 @@ public class QuizOptionActivity extends AppCompatActivity {
         });
     }
 
-    private void preMathTest(){
+    private void preMathTest(String subjectId){
         findViewById(R.id.cvMath).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(QuizOptionActivity.this, PreTestMathActivity.class);
+                intent.putExtra("subjectId", subjectId);
                 startActivity(intent);
                 finish();
             }
@@ -97,6 +97,7 @@ public class QuizOptionActivity extends AppCompatActivity {
         if (!subjects.isEmpty()) {
             Subject firstSubject = subjects.get(0);
             tvMath.setText(""+firstSubject.getName());
+            preMathTest(firstSubject.getId());
         }
     }
 }

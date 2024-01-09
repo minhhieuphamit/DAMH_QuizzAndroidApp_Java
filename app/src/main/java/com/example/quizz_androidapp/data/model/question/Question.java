@@ -1,78 +1,84 @@
 package com.example.quizz_androidapp.data.model.question;
 
-public class Question {
-    int id;
-    String question;
-    String optionOne;
-    String optionTwo;
-    String optionThree;
-    String optionFour;
-    int correctAnswer;
+import com.google.gson.annotations.SerializedName;
 
-    public Question(int id, String question, String optionOne, String optionTwo, String optionThree, String optionFour, int correctAnswer) {
-        this.id = id;
-        this.question = question;
-        this.optionOne = optionOne;
-        this.optionTwo = optionTwo;
-        this.optionThree = optionThree;
-        this.optionFour = optionFour;
+import java.io.Serializable;
+import java.util.List;
+
+public class Question implements Serializable {
+
+    @SerializedName("subject_id")
+    private String subjectId;
+
+    @SerializedName("content")
+    private String content;
+
+    @SerializedName("answer")
+    private List<String> answer;
+
+    @SerializedName("difficulty")
+    private String difficulty;
+
+    @SerializedName("correct_answer")
+    private String correctAnswer;
+
+    @SerializedName("id")
+    private String id;
+
+    public Question(String subjectId, String content, List<String> answer, String difficulty, String correctAnswer, String id) {
+        this.subjectId = subjectId;
+        this.content = content;
+        this.answer = answer;
+        this.difficulty = difficulty;
         this.correctAnswer = correctAnswer;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
         this.id = id;
     }
 
-    public String getQuestion() {
-        return question;
+    public String getSubjectId() {
+        return subjectId;
     }
 
-    public void setQuestion(String question) {
-        this.question = question;
+    public String getContent() {
+        return content;
     }
 
-    public String getOptionOne() {
-        return optionOne;
+    public List<String> getAnswer() {
+        return answer;
     }
 
-    public void setOptionOne(String optionOne) {
-        this.optionOne = optionOne;
+    public String getDifficulty() {
+        return difficulty;
     }
 
-    public String getOptionTwo() {
-        return optionTwo;
-    }
-
-    public void setOptionTwo(String optionTwo) {
-        this.optionTwo = optionTwo;
-    }
-
-    public String getOptionThree() {
-        return optionThree;
-    }
-
-    public void setOptionThree(String optionThree) {
-        this.optionThree = optionThree;
-    }
-
-    public String getOptionFour() {
-        return optionFour;
-    }
-
-    public void setOptionFour(String optionFour) {
-        this.optionFour = optionFour;
-    }
-
-    public int getCorrectAnswer() {
+    public String getCorrectAnswer() {
         return correctAnswer;
     }
 
-    public void setCorrectAnswer(int correctAnswer) {
+    public String getId() {
+        return id;
+    }
+
+    public void setSubjectId(String subjectId) {
+        this.subjectId = subjectId;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setAnswer(List<String> answer) {
+        this.answer = answer;
+    }
+
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public void setCorrectAnswer(String correctAnswer) {
         this.correctAnswer = correctAnswer;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
 }

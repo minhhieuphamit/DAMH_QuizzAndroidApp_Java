@@ -26,9 +26,11 @@ public class PreTestMathActivity extends AppCompatActivity {
         findViewById(R.id.btn_StartExam).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    Intent intent = new Intent(PreTestMathActivity.this, MathQuizActivity.class);
-                    startActivity(intent);
-                    finish();
+                String subjectId = getIntent().getStringExtra("subjectId");
+                Intent intent = new Intent(PreTestMathActivity.this, MathQuizActivity.class);
+                intent.putExtra("subjectId", subjectId);
+                startActivity(intent);
+                finish();
             }
         });
     }
