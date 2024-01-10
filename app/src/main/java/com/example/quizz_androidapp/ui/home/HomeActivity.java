@@ -16,6 +16,8 @@ import com.example.quizz_androidapp.R;
 import com.example.quizz_androidapp.data.model.login.User;
 import com.example.quizz_androidapp.ui.login.LoginActivity;
 
+import java.util.Objects;
+
 public class HomeActivity extends AppCompatActivity {
 
     CardView cvStartQuiz, cvRule, cvHistory, cvLogout, cvAbout;
@@ -100,7 +102,7 @@ public class HomeActivity extends AppCompatActivity {
             });
             dialog.show();
 
-            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         });
     }
 }

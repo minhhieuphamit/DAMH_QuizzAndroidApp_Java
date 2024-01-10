@@ -8,13 +8,19 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.quizz_androidapp.R;
 import com.example.quizz_androidapp.api.APIService;
+import com.example.quizz_androidapp.data.model.exam.Exam;
+import com.example.quizz_androidapp.data.model.exam.ExamData;
+import com.example.quizz_androidapp.data.model.exam.ExamRequest;
+import com.example.quizz_androidapp.data.model.exam.ExamResponse;
+import com.example.quizz_androidapp.data.model.question.Question;
 import com.example.quizz_androidapp.data.model.subject.Subject;
 import com.example.quizz_androidapp.data.model.subject.SubjectResponse;
-import com.example.quizz_androidapp.ui.home.math.PreTestMathActivity;
 
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -22,12 +28,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class QuizOptionActivity extends AppCompatActivity {
-    TextView tvMath;
+    TextView tvDiaLy, tvGDCD, tvLichSu;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_option);
-        tvMath = findViewById(R.id.tv_Mathematics);
+        initView();
     }
 
     @Override
@@ -35,8 +42,13 @@ public class QuizOptionActivity extends AppCompatActivity {
         super.onStart();
         getAllSubjects();
         backToPrevious();
-        preMathTest();
+        preTest();
+    }
 
+    private void initView(){
+        tvDiaLy = findViewById(R.id.tv_DiaLy);
+        tvGDCD = findViewById(R.id.tv_GDCD);
+        tvLichSu = findViewById(R.id.tv_LichSu);
     }
 
     private void backToPrevious(){
@@ -48,25 +60,13 @@ public class QuizOptionActivity extends AppCompatActivity {
         });
     }
 
-    private void preMathTest(){
-        findViewById(R.id.cvMath).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(QuizOptionActivity.this, PreTestMathActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-    }
-
     private String getAccessToken() {
         SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         return preferences.getString("accessToken", null);
     }
-    private void getAllSubjects() {
-        // Lấy token từ SharedPreferences hoặc cơ sở dữ liệu nếu đã lưu trữ
-        String accessToken = getAccessToken();
 
+    private void getAllSubjects() {
+        String accessToken = getAccessToken();
         if (accessToken != null) {
             Call<SubjectResponse> call = APIService.apiService.getAllSubjects("Bearer " + accessToken);
             call.enqueue(new Callback<SubjectResponse>() {
@@ -78,25 +78,83 @@ public class QuizOptionActivity extends AppCompatActivity {
                             displaySubjects(subjectResponse.getResults());
                         }
                     } else {
-                        // Xử lý trường hợp lỗi từ API
+                        // TODO: Xử lý trường hợp lỗi từ API
                     }
                 }
 
                 @Override
                 public void onFailure(Call<SubjectResponse> call, Throwable t) {
-                    // Xử lý trường hợp lỗi kết nối hoặc lỗi từ API
+                    // TODO: Xử lý trường hợp lỗi kết nối hoặc lỗi từ API
                 }
             });
         } else {
-            // Xử lý trường hợp không có token (chưa đăng nhập)
+            // TODO: Xử lý trường hợp không có token (chưa đăng nhập)
         }
     }
-
 
     private void displaySubjects(List<Subject> subjects) {
         if (!subjects.isEmpty()) {
             Subject firstSubject = subjects.get(0);
-            tvMath.setText(""+firstSubject.getName());
+            Subject secondSubject = subjects.get(1);
+            Subject thirdSubject = subjects.get(2);
+            tvDiaLy.setText(""+firstSubject.getName());
+            tvGDCD.setText(""+secondSubject.getName());
+            tvLichSu.setText(""+thirdSubject.getName());
+        }
+    }
+
+    private void preTest(){
+        findViewById(R.id.cvDiaLy).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String subjectDiaLy = tvDiaLy.getText().toString();
+                createExam(subjectDiaLy);
+            }
+        });
+        findViewById(R.id.cvGDCD).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String subjectGDCD = tvGDCD.getText().toString();
+                createExam(subjectGDCD);
+            }
+        });
+        findViewById(R.id.cvLichSu).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String subjectLichSu = tvLichSu.getText().toString();
+                createExam(subjectLichSu);
+            }
+        });
+    }
+
+    private void createExam(String subjectName){
+        String accessToken = getAccessToken();
+        if(accessToken != null) {
+            Call<ExamResponse> call = APIService.apiService.createExam("Bearer " + accessToken, new ExamRequest(subjectName));
+            call.enqueue(new Callback<ExamResponse>() {
+                @Override
+                public void onResponse(Call<ExamResponse> call, Response<ExamResponse> response) {
+                    if (response.isSuccessful()) {
+                        ExamData exam = response.body().getData();
+                        if (exam != null){
+                            Toast.makeText(QuizOptionActivity.this, "Lấy dữ liệu thành công", Toast.LENGTH_SHORT).show();
+                            Log.e("exam", exam.toString());
+                            Intent intent = new Intent(QuizOptionActivity.this, PreTestActivity.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("exam", exam);
+                            intent.putExtras(bundle);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ExamResponse> call, Throwable t) {
+                    Log.e("Error", String.valueOf(t));
+                    Toast.makeText(QuizOptionActivity.this, "Lấy dữ liệu thất bại", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.quizz_androidapp.ui.home.math;
+package com.example.quizz_androidapp.ui.home;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.example.quizz_androidapp.R;
 
-public class ResultMathActivity extends AppCompatActivity {
+public class ResultActivity extends AppCompatActivity {
     TextView subject;
 
     @Override

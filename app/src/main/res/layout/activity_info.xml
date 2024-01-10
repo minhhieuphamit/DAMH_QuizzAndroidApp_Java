@@ -33,7 +33,7 @@
         android:layout_height="150dp"
         android:layout_below="@id/result_"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/yamayka"
+        android:src="@drawable/tung"
         android:layout_marginTop="20dp"/>
 
     <TextView
