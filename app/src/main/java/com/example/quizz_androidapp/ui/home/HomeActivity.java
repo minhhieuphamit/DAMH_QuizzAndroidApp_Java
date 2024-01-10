@@ -22,6 +22,7 @@ public class HomeActivity extends AppCompatActivity {
 
     CardView cvStartQuiz, cvRule, cvHistory, cvLogout, cvAbout;
     TextView tvUserName;
+    String userFN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,7 @@ public class HomeActivity extends AppCompatActivity {
             User user = (User) bundleReceive.get("user");
             if(user != null){
                 String userFL = "Xin chào, " + user.getLastName() + " " + user.getFirstName();
+                userFN = user.getFirstName();
                 tvUserName.setText(userFL);
                 clickInfo(user);
             }
@@ -60,7 +62,11 @@ public class HomeActivity extends AppCompatActivity {
 
     private void startQuizOption(){
         cvStartQuiz.setOnClickListener(view -> {
-            startActivity(new Intent(HomeActivity.this, QuizOptionActivity.class));
+            Intent intentQuiz = new Intent(HomeActivity.this, QuizOptionActivity.class);
+            Bundle bundleQuiz = new Bundle();
+            bundleQuiz.putSerializable("user first name", userFN);
+            intentQuiz.putExtras(bundleQuiz);
+            startActivity(intentQuiz);
         });
     }
 

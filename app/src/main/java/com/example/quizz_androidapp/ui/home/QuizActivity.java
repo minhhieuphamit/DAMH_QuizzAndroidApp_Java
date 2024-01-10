@@ -19,6 +19,7 @@
 
     import com.example.quizz_androidapp.R;
     import com.example.quizz_androidapp.api.APIService;
+    import com.example.quizz_androidapp.data.model.exam.Exam;
     import com.example.quizz_androidapp.data.model.question.Question;
     import com.example.quizz_androidapp.data.model.question.QuestionResponse;
 
@@ -34,10 +35,12 @@
         private int mCurrentPosition = 1;
         private ArrayList<Question> mQuestionList;
         private int mSelectedOptionNumber = 0;
-        private int correctQuestion = 0;
+        int correctAnswer = 0;
+        int wrongAnswer = 0;
         ProgressBar progressBar ;
         TextView tvProgressBar, tvQuestion, tvOptionOne, tvOptionTwo, tvOptionThree, tvOptionFour, tvTimer;
         Button btnSubmit;
+        String subjectName, userFN;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -51,15 +54,14 @@
 
             Bundle bundleReceive = getIntent().getExtras();
             if(bundleReceive != null){
-                mQuestionList = (ArrayList<Question>) bundleReceive.get("list question");
-                setQuestion();
+                Exam exam  = (Exam) bundleReceive.get("exam");
+                subjectName = (String) bundleReceive.get("subject name");
+                userFN = (String) bundleReceive.get("user first name");
+                if(exam != null){
+                    mQuestionList = (ArrayList<Question>) exam.getQuestions();
+                    setQuestion();
+                }
             }
-
-
-//            Nhận subjectId từ Intent
-//            String subjectId = getIntent().getStringExtra("subjectId");
-//            Gọi API để lấy danh sách câu hỏi
-//            getQuestions(subjectId);
         }
 
         public void initView(){
@@ -87,16 +89,19 @@
             findViewById(R.id.btn_submit).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    wrongAnswer = (10 - correctAnswer);
+
                     Intent intent = new Intent(QuizActivity.this, ResultActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("correct answer",correctAnswer);
+                    bundle.putSerializable("wrong answer",wrongAnswer);
+                    bundle.putSerializable("subject name", subjectName);
+                    bundle.putSerializable("user first name", userFN);
+                    intent.putExtras(bundle);
                     startActivity(intent);
                     finish();
                 }
             });
-        }
-
-        private String getAccessToken() {
-            SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-            return preferences.getString("accessToken", null);
         }
 
         private void setQuestion() {
@@ -127,7 +132,7 @@
                 btnSubmit.setText("Hoàn thành bài thi");
                 goResult();
             } else {
-                btnSubmit.setText("Nộp bài");
+                btnSubmit.setText("Tiếp tục");
             }
         }
 
@@ -159,31 +164,24 @@
                             setQuestion();
                         } else {
                             Toast.makeText(this, "You're Done", Toast.LENGTH_SHORT).show();
-                           // TODO: Có thể thêm hành động sau khi hoàn thành tất cả câu hỏi
-                            // SCORE
-                            // iD USER -> hISTORY
+                            Question question = mQuestionList.get(mCurrentPosition - 1);
+                            if (question.getCorrectAnswer().equals(mQuestionList.get(mCurrentPosition - 1).getAnswer().get(mSelectedOptionNumber - 1))) {
+                                correctAnswer++;
+                            }
+                            if (mCurrentPosition == mQuestionList.size()) {
+                                btnSubmit.setText("Hoàn thành bài thi");
+                                goResult();
+                            } else {
+                                btnSubmit.setText("Câu tiếp theo");
+                            }
                         }
-                    } else {
-                        Question question = mQuestionList.get(mCurrentPosition - 1);
-                        if (question.getCorrectAnswer().equals(mQuestionList.get(mCurrentPosition - 1).getAnswer().get(mSelectedOptionNumber - 1))) {
-                            answerView(mSelectedOptionNumber, R.drawable.correct_option_choice);
-                            correctQuestion++;
-                        } else {
-                            answerView(mSelectedOptionNumber, R.drawable.wrong_option_choice);
-                        }
-                        if (mCurrentPosition == mQuestionList.size()) {
-                            btnSubmit.setText("Hoàn thành bài thi");
-                            goResult();
-                        } else {
-                            btnSubmit.setText("Câu tiếp theo");
-                        }
-                        mSelectedOptionNumber = 0;
-                    }
+                    }mSelectedOptionNumber = 0;
                 }
             }
         }
 
-        // ///////////////////////////////// 3 func dưới là set up trạng thái bình thường và khi selected và trạng thái trả lời câu hỏi //////////////////////////
+
+        // ///////////////////////////////// 2 func dưới là set up trạng thái bình thường và khi selected //////////////////////////
         private void defaultOptionView() {
             ArrayList<TextView> options = new ArrayList<>();
             if (tvOptionOne != null) {
@@ -213,30 +211,6 @@
             tv.setBackground(ContextCompat.getDrawable(this, R.drawable.option_choice_selected));
         }
 
-        private void answerView(int answer, int drawableView) {
-            switch (answer) {
-                case 1:
-                    if (tvOptionOne != null) {
-                        tvOptionOne.setBackground(ContextCompat.getDrawable(this, drawableView));
-                    }
-                    break;
-                case 2:
-                    if (tvOptionTwo != null) {
-                        tvOptionTwo.setBackground(ContextCompat.getDrawable(this, drawableView));
-                    }
-                    break;
-                case 3:
-                    if (tvOptionThree != null) {
-                        tvOptionThree.setBackground(ContextCompat.getDrawable(this, drawableView));
-                    }
-                    break;
-                case 4:
-                    if (tvOptionFour != null) {
-                        tvOptionFour.setBackground(ContextCompat.getDrawable(this, drawableView));
-                    }
-                    break;
-            }
-        }
 
         // ////////////////////////// Hiển thị 1 dialog thông báo thoát //////////////////////////////////////////////
         private void showExitConfirmationDialog() {
@@ -291,31 +265,5 @@
             }
         }
 
-//        private void getQuestions(String subjectId) {
-//            String accessToken = getAccessToken();
-//            Call<QuestionResponse> call = APIService.apiService.getAllQuestions("Bearer " + accessToken, 1, 10);
-//            call.enqueue(new Callback<QuestionResponse>() {
-//                @Override
-//                public void onResponse(Call<QuestionResponse> call, Response<QuestionResponse> response) {
-//                    if (response.isSuccessful()) {
-//                        QuestionResponse questionResponse = response.body();
-//                        if (questionResponse != null) {
-//                            // Lưu danh sách câu hỏi và hiển thị câu hỏi đầu tiên
-//                            mQuestionList = new ArrayList<>(questionResponse.getResults());
-//                            setQuestion();
-//                        } else {
-//                            // Xử lý trường hợp không có câu hỏi trả về
-//                        }
-//                    } else {
-//                        // Xử lý trường hợp lỗi từ API
-//                    }
-//                }
-//
-//                @Override
-//                public void onFailure(Call<QuestionResponse> call, Throwable t) {
-//                    // Xử lý trường hợp lỗi kết nối hoặc lỗi từ API
-//                }
-//            });
-//        }
 
     }

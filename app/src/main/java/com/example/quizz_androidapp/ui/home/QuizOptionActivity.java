@@ -12,15 +12,12 @@ import android.widget.Toast;
 
 import com.example.quizz_androidapp.R;
 import com.example.quizz_androidapp.api.APIService;
-import com.example.quizz_androidapp.data.model.exam.Exam;
 import com.example.quizz_androidapp.data.model.exam.ExamData;
 import com.example.quizz_androidapp.data.model.exam.ExamRequest;
 import com.example.quizz_androidapp.data.model.exam.ExamResponse;
-import com.example.quizz_androidapp.data.model.question.Question;
 import com.example.quizz_androidapp.data.model.subject.Subject;
 import com.example.quizz_androidapp.data.model.subject.SubjectResponse;
 
-import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -29,12 +26,18 @@ import retrofit2.Response;
 
 public class QuizOptionActivity extends AppCompatActivity {
     TextView tvDiaLy, tvGDCD, tvLichSu;
+    String userFN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_option);
         initView();
+
+        Bundle bundleReceive = getIntent().getExtras();
+        if(bundleReceive != null){
+            userFN = (String) bundleReceive.get("user first name");
+        }
     }
 
     @Override
@@ -141,6 +144,8 @@ public class QuizOptionActivity extends AppCompatActivity {
                             Log.e("exam", exam.toString());
                             Intent intent = new Intent(QuizOptionActivity.this, PreTestActivity.class);
                             Bundle bundle = new Bundle();
+                            bundle.putSerializable("subject name", subjectName);
+                            bundle.putSerializable("user first name", userFN);
                             bundle.putSerializable("exam", exam);
                             intent.putExtras(bundle);
                             startActivity(intent);
