@@ -1,5 +1,7 @@
 package com.example.quizz_androidapp.api;
 
+import com.example.quizz_androidapp.data.model.exam.ExamRequest;
+import com.example.quizz_androidapp.data.model.exam.ExamResponse;
 import com.example.quizz_androidapp.data.model.login.LoginRequest;
 import com.example.quizz_androidapp.data.model.login.RegisterRequest;
 import com.example.quizz_androidapp.data.model.login.UserResponse;
@@ -36,6 +38,10 @@ public interface APIService {
     //Link: https://hptgroup.me/api/v1/subjects
     @GET("subjects")
     Call<SubjectResponse> getAllSubjects(@Header("Authorization") String authorization);
+
+    //Link: https://hptgroup.me/api/v1/exams
+    @POST("exams")
+    Call<ExamResponse> createExam(@Header("Authorization") String authorization, @Body ExamRequest examRequest);
 
     // Link: https://hptgroup.me/api/v1/questions
     @GET("questions")
