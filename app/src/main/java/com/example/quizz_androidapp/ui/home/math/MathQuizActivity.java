@@ -114,7 +114,9 @@
                             setQuestion();
                         } else {
                             Toast.makeText(this, "You're Done", Toast.LENGTH_SHORT).show();
-                            // Có thể thêm hành động sau khi hoàn thành tất cả câu hỏi
+                           // TODO: Có thể thêm hành động sau khi hoàn thành tất cả câu hỏi
+                            // SCORE
+                            // iD USER -> hISTORY
                         }
                     } else {
                         Question question = mQuestionList.get(mCurrentPosition - 1);
