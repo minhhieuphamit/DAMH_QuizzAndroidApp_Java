@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/imagePreTest"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:padding="4dp"
+        app:srcCompat="@drawable/arrow" />
 
     <TextView
         android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bài thi trắc nghiệm Toán Học"
+        android:text="Bài thi trắc nghiệm"
         android:textSize="24sp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
@@ -17,7 +28,7 @@
         android:id="@+id/textViewContent1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1. Bạn chuẩn bị tham gia bài thi trắc nghiệm toán, bao gồm toán số và toán hình"
+        android:text="1. Bạn chuẩn bị tham gia bài thi trắc nghiệm"
         android:layout_below="@id/textViewTitle"
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"

@@ -31,7 +31,7 @@
         app:layout_constraintTop_toTopOf="@+id/imageViewQuizOption" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cvMath"
+        android:id="@+id/cvDiaLy"
         style="@style/cardViewStyle"
         android:layout_width="match_parent"
         android:layout_height="@dimen/home_card_height"
@@ -56,14 +56,14 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/blackboard" />
+                app:srcCompat="@drawable/notebook" />
 
             <TextView
-                android:id="@+id/tv_Mathematics"
+                android:id="@+id/tv_DiaLy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:text=""
+                tools:text="Địa lý"
                 style="@style/categoryHeadingTextStyle"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView8"
                 app:layout_constraintStart_toEndOf="@+id/imageView8"
@@ -73,14 +73,14 @@
 
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cvGeography"
+        android:id="@+id/cvGDCD"
         style="@style/cardViewStyle"
         android:layout_width="0dp"
         android:layout_height="@dimen/home_card_height"
         android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/cvMath"
-        app:layout_constraintStart_toStartOf="@+id/cvMath"
-        app:layout_constraintTop_toBottomOf="@+id/cvMath">
+        app:layout_constraintEnd_toEndOf="@+id/cvDiaLy"
+        app:layout_constraintStart_toStartOf="@+id/cvDiaLy"
+        app:layout_constraintTop_toBottomOf="@+id/cvDiaLy">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -96,14 +96,14 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/worldwide" />
+                app:srcCompat="@drawable/notebook" />
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/tv_GDCD"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:text="Gegraphy"
+                android:text="Giáo dục công dân"
                 style="@style/categoryHeadingTextStyle"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView7"
                 app:layout_constraintStart_toEndOf="@+id/imageView7"
@@ -112,14 +112,14 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cvLiterature"
+        android:id="@+id/cvLichSu"
         style="@style/cardViewStyle"
         android:layout_width="0dp"
         android:layout_height="@dimen/home_card_height"
         android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/cvGeography"
-        app:layout_constraintStart_toStartOf="@+id/cvGeography"
-        app:layout_constraintTop_toBottomOf="@+id/cvGeography">
+        app:layout_constraintEnd_toEndOf="@+id/cvGDCD"
+        app:layout_constraintStart_toStartOf="@+id/cvGDCD"
+        app:layout_constraintTop_toBottomOf="@+id/cvGDCD">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -135,15 +135,15 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/book" />
+                app:srcCompat="@drawable/notebook" />
 
             <TextView
-                android:id="@+id/textView7"
+                android:id="@+id/tv_LichSu"
                 style="@style/categoryHeadingTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:text="Liturate"
+                android:text="Lịch sử"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView9"
                 app:layout_constraintStart_toEndOf="@+id/imageView9"
                 app:layout_constraintTop_toTopOf="@+id/imageView9" />

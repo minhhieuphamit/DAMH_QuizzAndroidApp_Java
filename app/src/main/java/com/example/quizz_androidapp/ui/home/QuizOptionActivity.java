@@ -1,12 +1,10 @@
 package com.example.quizz_androidapp.ui.home;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -14,7 +12,6 @@ import com.example.quizz_androidapp.R;
 import com.example.quizz_androidapp.api.APIService;
 import com.example.quizz_androidapp.data.model.subject.Subject;
 import com.example.quizz_androidapp.data.model.subject.SubjectResponse;
-import com.example.quizz_androidapp.ui.home.math.PreTestMathActivity;
 
 import java.util.List;
 
@@ -23,12 +20,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class QuizOptionActivity extends AppCompatActivity {
-    TextView tvMath;
+    TextView tvDiaLy, tvGDCD, tvLichSu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_option);
-        tvMath = findViewById(R.id.tv_Mathematics);
+
+        tvDiaLy = findViewById(R.id.tv_DiaLy);
+        tvGDCD = findViewById(R.id.tv_GDCD);
+        tvLichSu = findViewById(R.id.tv_LichSu);
     }
 
     @Override
@@ -47,11 +47,31 @@ public class QuizOptionActivity extends AppCompatActivity {
         });
     }
 
-    private void preMathTest(String subjectId){
-        findViewById(R.id.cvMath).setOnClickListener(new View.OnClickListener() {
+    private void preTest(String subjectId){
+        findViewById(R.id.cvDiaLy).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(QuizOptionActivity.this, PreTestMathActivity.class);
+                Intent intent = new Intent(QuizOptionActivity.this, PreTestActivity.class);
+                intent.putExtra("subjectId", subjectId);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        findViewById(R.id.cvGDCD).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(QuizOptionActivity.this, PreTestActivity.class);
+                intent.putExtra("subjectId", subjectId);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        findViewById(R.id.cvLichSu).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(QuizOptionActivity.this, PreTestActivity.class);
                 intent.putExtra("subjectId", subjectId);
                 startActivity(intent);
                 finish();
@@ -96,8 +116,12 @@ public class QuizOptionActivity extends AppCompatActivity {
     private void displaySubjects(List<Subject> subjects) {
         if (!subjects.isEmpty()) {
             Subject firstSubject = subjects.get(0);
-            tvMath.setText(""+firstSubject.getName());
-            preMathTest(firstSubject.getId());
+            Subject secondSubject = subjects.get(1);
+            Subject thirdSubbject = subjects.get(2);
+            tvDiaLy.setText(""+firstSubject.getName());
+            tvGDCD.setText(""+secondSubject.getName());
+            tvLichSu.setText(""+thirdSubbject.getName());
+            preTest(firstSubject.getId());
         }
     }
 }

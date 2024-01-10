@@ -1,4 +1,4 @@
-    package com.example.quizz_androidapp.ui.home.math;
+    package com.example.quizz_androidapp.ui.home;
 
     import androidx.appcompat.app.AppCompatActivity;
     import androidx.core.content.ContextCompat;
@@ -19,7 +19,6 @@
 
     import com.example.quizz_androidapp.R;
     import com.example.quizz_androidapp.api.APIService;
-    import com.example.quizz_androidapp.data.Constants;
     import com.example.quizz_androidapp.data.model.question.Question;
     import com.example.quizz_androidapp.data.model.question.QuestionResponse;
 
@@ -30,7 +29,7 @@
     import retrofit2.Callback;
     import retrofit2.Response;
 
-    public class MathQuizActivity extends AppCompatActivity implements View.OnClickListener {
+    public class QuizActivity extends AppCompatActivity implements View.OnClickListener {
         private CountDownTimer countDownTimer;
         private int mCurrentPosition = 1;
         private ArrayList<Question> mQuestionList;
@@ -43,7 +42,7 @@
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_math_quiz);
+            setContentView(R.layout.activity_quiz);
             initView();
 
             long countdownMillis = 600000;
@@ -121,17 +120,17 @@
                     } else {
                         Question question = mQuestionList.get(mCurrentPosition - 1);
                         if (question.getCorrectAnswer().equals(mQuestionList.get(mCurrentPosition - 1).getAnswer().get(mSelectedOptionNumber - 1))) {
-                            answerView(mSelectedOptionNumber, R.drawable.correct_option_choice);
+//                            answerView(mSelectedOptionNumber, R.drawable.correct_option_choice);
                             correctQuestion++;
                         } else {
-                            answerView(mSelectedOptionNumber, R.drawable.wrong_option_choice);
+//                            answerView(mSelectedOptionNumber, R.drawable.wrong_option_choice);
                         }
 
                         if (mCurrentPosition == mQuestionList.size()) {
                             btnSubmit.setText("FINISH");
                             goResult();
                         } else {
-                            btnSubmit.setText("NEXT");
+                            setQuestion();
                         }
                         mSelectedOptionNumber = 0;
                     }
@@ -149,7 +148,7 @@
 
         private void getQuestions(String subjectId) {
             String accessToken = getAccessToken();
-            Call<QuestionResponse> call = APIService.apiService.getAllQuestions("Bearer " + accessToken, 1, 3);
+            Call<QuestionResponse> call = APIService.apiService.getAllQuestions("Bearer " + accessToken, 1, 10);
             call.enqueue(new Callback<QuestionResponse>() {
                 @Override
                 public void onResponse(Call<QuestionResponse> call, Response<QuestionResponse> response) {
@@ -236,30 +235,30 @@
             tv.setBackground(ContextCompat.getDrawable(this, R.drawable.option_choice_selected));
         }
 
-        private void answerView(int answer, int drawableView) {
-            switch (answer) {
-                case 1:
-                    if (tvOptionOne != null) {
-                        tvOptionOne.setBackground(ContextCompat.getDrawable(this, drawableView));
-                    }
-                    break;
-                case 2:
-                    if (tvOptionTwo != null) {
-                        tvOptionTwo.setBackground(ContextCompat.getDrawable(this, drawableView));
-                    }
-                    break;
-                case 3:
-                    if (tvOptionThree != null) {
-                        tvOptionThree.setBackground(ContextCompat.getDrawable(this, drawableView));
-                    }
-                    break;
-                case 4:
-                    if (tvOptionFour != null) {
-                        tvOptionFour.setBackground(ContextCompat.getDrawable(this, drawableView));
-                    }
-                    break;
-            }
-        }
+//        private void answerView(int answer, int drawableView) {
+//            switch (answer) {
+//                case 1:
+//                    if (tvOptionOne != null) {
+//                        tvOptionOne.setBackground(ContextCompat.getDrawable(this, drawableView));
+//                    }
+//                    break;
+//                case 2:
+//                    if (tvOptionTwo != null) {
+//                        tvOptionTwo.setBackground(ContextCompat.getDrawable(this, drawableView));
+//                    }
+//                    break;
+//                case 3:
+//                    if (tvOptionThree != null) {
+//                        tvOptionThree.setBackground(ContextCompat.getDrawable(this, drawableView));
+//                    }
+//                    break;
+//                case 4:
+//                    if (tvOptionFour != null) {
+//                        tvOptionFour.setBackground(ContextCompat.getDrawable(this, drawableView));
+//                    }
+//                    break;
+//            }
+//        }
 
         private void showExitConfirmationDialog() {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -286,7 +285,7 @@
             findViewById(R.id.btn_submit).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(MathQuizActivity.this, ResultMathActivity.class);
+                    Intent intent = new Intent(QuizActivity.this, ResultActivity.class);
                     startActivity(intent);
                     finish();
                 }
@@ -303,7 +302,7 @@
                 @Override
                 public void onFinish() {
                     tvTimer.setText("00:00");
-                    Intent intent = new Intent(MathQuizActivity.this, ResultMathActivity.class);
+                    Intent intent = new Intent(QuizActivity.this, ResultActivity.class);
                     startActivity(intent);
                 }
             }.start();
