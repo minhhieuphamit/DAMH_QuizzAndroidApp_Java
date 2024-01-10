@@ -151,7 +151,6 @@ public class QuizOptionActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<ExamResponse> call, Throwable t) {
-                    t.toString();
                     Log.e("Error", String.valueOf(t));
                     Toast.makeText(QuizOptionActivity.this, "Lấy dữ liệu thất bại", Toast.LENGTH_SHORT).show();
                 }

@@ -1,5 +1,6 @@
 package com.example.quizz_androidapp.api;
 
+import com.example.quizz_androidapp.data.model.exam.DetailsExamResponse;
 import com.example.quizz_androidapp.data.model.exam.ExamRequest;
 import com.example.quizz_androidapp.data.model.exam.ExamResponse;
 import com.example.quizz_androidapp.data.model.login.LoginRequest;
@@ -17,6 +18,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface APIService {
@@ -42,6 +44,10 @@ public interface APIService {
     //Link: https://hptgroup.me/api/v1/exams
     @POST("exams")
     Call<ExamResponse> createExam(@Header("Authorization") String authorization, @Body ExamRequest examRequest);
+
+    //Link: https://hptgroup.me/api/v1/exams/details/659e867b4a5a290d7ddfea77
+    @POST("exams/details/{id}")
+    Call<DetailsExamResponse> getDetailsExam(@Header("Authorization") String authorization, @Path("id") String id);
 
     // Link: https://hptgroup.me/api/v1/questions
     @GET("questions")
