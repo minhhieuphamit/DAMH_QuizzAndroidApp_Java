@@ -3,7 +3,13 @@ package com.example.quizz_androidapp.data.model.exam;
 import com.google.gson.annotations.SerializedName;
 
 public class ExamResponse {
-    public ExamResponse(int status, Exam data) {
+
+    @SerializedName("status")
+    private int status;
+    @SerializedName("data")
+    private ExamData data;
+
+    public ExamResponse(int status, ExamData data) {
         this.status = status;
         this.data = data;
     }
@@ -16,16 +22,12 @@ public class ExamResponse {
         this.status = status;
     }
 
-    public Exam getData() {
+    public ExamData getData() {
         return data;
     }
 
-    public void setData(Exam data) {
+    public void setData(ExamData data) {
         this.data = data;
     }
 
-    @SerializedName("status")
-    private int status;
-    @SerializedName("data")
-    private Exam data;
 }
