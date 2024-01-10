@@ -7,6 +7,22 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Exam implements Serializable {
+
+    @SerializedName("_id")
+    private String idExam;
+    @SerializedName("start_time")
+    private String startTime;
+    @SerializedName("end_time")
+    private String endTime;
+    @SerializedName("questions")
+    private List<Question> questions;
+    @SerializedName("createdAt")
+    private String createAt;
+    @SerializedName("updatedAt")
+    private String updateAt;
+    @SerializedName("__v")
+    private int version;
+
     public String getIdExam() {
         return idExam;
     }
@@ -75,21 +91,6 @@ public class Exam implements Serializable {
                 ", version=" + version +
                 '}';
     }
-
-    @SerializedName("_id")
-    private String idExam;
-    @SerializedName("start_time")
-    private String startTime;
-    @SerializedName("end_time")
-    private String endTime;
-    @SerializedName("questions")
-    private List<Question> questions;
-    @SerializedName("createdAt")
-    private String createAt;
-    @SerializedName("updatedAt")
-    private String updateAt;
-    @SerializedName("__v")
-    private int version;
 
     public Exam(String idExam, String startTime, String endTime, List<Question> questions, String createAt, String updateAt, int version) {
         this.idExam = idExam;
