@@ -2,7 +2,9 @@ package com.example.quizz_androidapp.data.model.exam;
 
 import com.google.gson.annotations.SerializedName;
 
-public class DetailsExam {
+import java.io.Serializable;
+
+public class DetailsExam implements Serializable {
 
     @SerializedName("exam")
     private Exam exam;

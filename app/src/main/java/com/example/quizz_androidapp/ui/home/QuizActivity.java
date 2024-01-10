@@ -32,7 +32,7 @@
     public class QuizActivity extends AppCompatActivity implements View.OnClickListener {
         private CountDownTimer countDownTimer;
         private int mCurrentPosition = 1;
-        private ArrayList<Question> mQuestionList;
+        private List<Question> mQuestionList;
         private int mSelectedOptionNumber = 0;
         private int correctQuestion = 0;
         ProgressBar progressBar ;
@@ -48,14 +48,19 @@
             long countdownMillis = 600000;
             startCountdownTimer(countdownMillis);
 
-           // mQuestionList = Constants.getQuestions();
-           // setQuestion();
-
-            // Nhận subjectId từ Intent
-            String subjectId = getIntent().getStringExtra("subjectId");
-
-            // Gọi API để lấy danh sách câu hỏi
-            getQuestions(subjectId);
+//            mQuestionList = Constants.getQuestions();
+//            setQuestion();
+//            Nhận subjectId từ Intent
+//            String subjectId = getIntent().getStringExtra("subjectId");
+//            Gọi API để lấy danh sách câu hỏi
+//            getQuestions(subjectId);
+            Bundle bundleReceive = getIntent().getExtras();
+            if(bundleReceive != null){
+                List<Question> questionList = (List<Question>) bundleReceive.get("list question");
+                if(questionList != null) {
+                    mQuestionList = questionList;
+                }
+            }
         }
 
         @Override

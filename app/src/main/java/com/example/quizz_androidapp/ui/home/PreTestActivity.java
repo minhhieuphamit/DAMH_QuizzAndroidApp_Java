@@ -19,6 +19,7 @@ import com.example.quizz_androidapp.data.model.exam.ExamResponse;
 import com.example.quizz_androidapp.data.model.login.User;
 import com.example.quizz_androidapp.data.model.question.Question;
 
+import java.io.Serializable;
 import java.util.List;
 
 import retrofit2.Call;
@@ -46,8 +47,18 @@ public class PreTestActivity extends AppCompatActivity {
                                 Exam exam = response.body().getData().getExam();
                                 if (exam != null) {
                                     Toast.makeText(PreTestActivity.this, "Lấy dữ liệu câu hỏi thành công", Toast.LENGTH_SHORT).show();
-                                    List<Question> quesions = exam.getQuestions();
-                                    Log.e("List Question", String.valueOf(quesions.get(0)));
+                                    findViewById(R.id.btn_StartExam).setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            List<Question> quesionList = exam.getQuestions();
+                                            Intent intent = new Intent(PreTestActivity.this, QuizActivity.class);
+                                            Bundle bundle = new Bundle();
+                                            bundle.putSerializable("list question", (Serializable) quesionList);
+                                            intent.putExtras(bundle);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                    });
                                 }
                             }
                         }
@@ -57,12 +68,6 @@ public class PreTestActivity extends AppCompatActivity {
                             Toast.makeText(PreTestActivity.this, "Lấy dữ liệu thất bại", Toast.LENGTH_SHORT).show();
                         }
                     });
-//                    findViewById(R.id.btn_StartExam).setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
-//
-//                        }
-//                    });
                 }
             }
         }

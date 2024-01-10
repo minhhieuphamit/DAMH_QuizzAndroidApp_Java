@@ -2,7 +2,9 @@ package com.example.quizz_androidapp.data.model.exam;
 
 import com.google.gson.annotations.SerializedName;
 
-public class DetailsExamResponse {
+import java.io.Serializable;
+
+public class DetailsExamResponse implements Serializable {
 
     @SerializedName("status")
     private String idExam;

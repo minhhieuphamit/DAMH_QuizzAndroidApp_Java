@@ -2,7 +2,7 @@ package com.example.quizz_androidapp.data.model.exam;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ExamRequest {
+public class ExamRequest  {
     public ExamRequest(String subjectName) {
         this.subjectName = subjectName;
     }
