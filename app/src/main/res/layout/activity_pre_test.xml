@@ -8,8 +8,8 @@
         android:id="@+id/imagePreTest"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:background="?selectableItemBackgroundBorderless"
         android:padding="4dp"
         app:srcCompat="@drawable/arrow" />
@@ -28,7 +28,7 @@
         android:id="@+id/textViewContent1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1. Bạn chuẩn bị tham gia bài thi trắc nghiệm"
+        android:text="1. Bạn chuẩn bị tham gia bài thi trắc nghiệm sau khi ấn bắt đầu thi"
         android:layout_below="@id/textViewTitle"
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
@@ -53,12 +53,21 @@
         android:layout_marginTop="10dp"
         android:layout_marginStart="20dp"
         android:textSize="20sp"/>
+    <TextView
+        android:id="@+id/textViewContent4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4. Hãy chọn kỹ đáp án trước khi chuyển sang câu hỏi tiếp theo"
+        android:layout_below="@id/textViewContent3"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:textSize="20sp"/>
 
     <Button
         android:id="@+id/btn_StartExam"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textViewContent3"
+        android:layout_below="@id/textViewContent4"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_marginTop="40dp"

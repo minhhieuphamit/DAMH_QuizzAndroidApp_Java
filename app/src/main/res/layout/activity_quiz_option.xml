@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:text="Quiz Option"
+        android:text="Lựa chọn môn thi"
         style="@style/titleTextStyle"
         app:layout_constraintBottom_toBottomOf="@+id/imageViewQuizOption"
         app:layout_constraintStart_toEndOf="@+id/imageViewQuizOption"

@@ -27,7 +27,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
-            android:text="Subject: "
+            android:text="Ngày thi: "
             app:layout_constraintBottom_toTopOf="@+id/textView21"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -54,13 +54,14 @@
             android:textSize="20sp"
 
             android:layout_marginBottom="16dp"
-            android:text="Date: "
+            android:text="Điểm: "
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textView21"
-            app:layout_constraintTop_toBottomOf="@+id/textView21" />
+            app:layout_constraintTop_toBottomOf="@+id/textView21"
+            />
 
         <TextView
-            android:id="@+id/tv_subject_history"
+            android:id="@+id/tv_date_history"
             style="@style/text_heading"
             android:layout_width="wrap_content"
             android:textSize="18sp"
@@ -71,7 +72,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/textView20"
             app:layout_constraintStart_toEndOf="@+id/textView20"
             app:layout_constraintTop_toTopOf="@+id/textView20"
-            tools:text="Math" />
+            tools:text="01-12-2019 09:15" />
 
         <TextView
             android:id="@+id/textView24"
@@ -89,7 +90,7 @@
             tools:text="20" />
 
         <TextView
-            android:id="@+id/tv_date_history"
+            android:id="@+id/tv_score_history"
             style="@style/text_heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -99,7 +100,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/textView22"
             app:layout_constraintStart_toEndOf="@+id/textView22"
             app:layout_constraintTop_toTopOf="@+id/textView22"
-            tools:text="01-12-2019 09:15" />
+            tools:text="9" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

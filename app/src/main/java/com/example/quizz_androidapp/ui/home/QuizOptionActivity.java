@@ -141,7 +141,6 @@ public class QuizOptionActivity extends AppCompatActivity {
                     if (response.isSuccessful()) {
                         ExamData exam = response.body().getData();
                         if (exam != null){
-                            Toast.makeText(QuizOptionActivity.this, "Lấy dữ liệu thành công", Toast.LENGTH_SHORT).show();
                             Log.e("exam", exam.toString());
                             Intent intent = new Intent(QuizOptionActivity.this, PreTestActivity.class);
                             Bundle bundle = new Bundle();
