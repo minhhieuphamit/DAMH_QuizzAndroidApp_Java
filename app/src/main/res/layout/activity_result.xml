@@ -114,13 +114,15 @@
 
     <TextView
         android:id="@+id/tv_correct_result"
+        style="@style/text_value_heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="3"
-        style="@style/text_value_heading"
+        android:layout_marginStart="64dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView11"
         app:layout_constraintStart_toStartOf="@+id/tv_subject_result"
-        app:layout_constraintTop_toTopOf="@+id/textView11" />
+        app:layout_constraintTop_toTopOf="@+id/textView11"
+        app:layout_constraintVertical_bias="1.0"
+        tools:text="3" />
 
     <TextView
         android:id="@+id/tv_wrong_result"
