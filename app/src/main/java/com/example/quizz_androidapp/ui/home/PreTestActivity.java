@@ -27,6 +27,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PreTestActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +36,9 @@ public class PreTestActivity extends AppCompatActivity {
         Bundle bundleReceive = getIntent().getExtras();
         if(bundleReceive != null){
             ExamData exam  = (ExamData) bundleReceive.get("exam");
+            String subjectName = (String) bundleReceive.get("subject name");
+            String userFN = (String) bundleReceive.get("user first name");
+            String userID = (String) bundleReceive.get("user id");
             if(exam != null){
                 String subjectExamID =  exam.getIdExam();
                 String accessToken = getAccessToken();
@@ -50,10 +54,12 @@ public class PreTestActivity extends AppCompatActivity {
                                     findViewById(R.id.btn_StartExam).setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
-                                            List<Question> quesionList = exam.getQuestions();
                                             Intent intent = new Intent(PreTestActivity.this, QuizActivity.class);
                                             Bundle bundle = new Bundle();
-                                            bundle.putSerializable("list question", (Serializable) quesionList);
+                                            bundle.putSerializable("exam", exam);
+                                            bundle.putSerializable("subject name", subjectName);
+                                            bundle.putSerializable("user first name", userFN);
+                                            bundle.putSerializable("user id", userID);
                                             intent.putExtras(bundle);
                                             startActivity(intent);
                                             finish();

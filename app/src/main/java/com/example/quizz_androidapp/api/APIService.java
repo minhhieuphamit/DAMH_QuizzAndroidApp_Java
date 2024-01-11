@@ -6,7 +6,10 @@ import com.example.quizz_androidapp.data.model.exam.ExamResponse;
 import com.example.quizz_androidapp.data.model.login.LoginRequest;
 import com.example.quizz_androidapp.data.model.login.RegisterRequest;
 import com.example.quizz_androidapp.data.model.login.UserResponse;
+import com.example.quizz_androidapp.data.model.logout.LogoutResponse;
 import com.example.quizz_androidapp.data.model.question.QuestionResponse;
+import com.example.quizz_androidapp.data.model.result.ResultRequest;
+import com.example.quizz_androidapp.data.model.result.ResultResponse;
 import com.example.quizz_androidapp.data.model.subject.SubjectResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -49,11 +52,11 @@ public interface APIService {
     @POST("exams/details/{id}")
     Call<DetailsExamResponse> getDetailsExam(@Header("Authorization") String authorization, @Path("id") String id);
 
-    // Link: https://hptgroup.me/api/v1/questions
-    @GET("questions")
-    Call<QuestionResponse> getAllQuestions(
-            @Header("Authorization") String authorization,
-            @Query("page") int page,
-            @Query("limit") int limit
-    );
+    //Link: https://hptgroup.me/api/v1/result
+    @POST("result")
+    Call<ResultResponse> createResult(@Header("Authorization") String authorization, @Body ResultRequest resultRequest);
+
+    //Link: https://hptgroup.me/api/v1/auth/logout
+    @POST("logout")
+    Call<LogoutResponse> logout(@Header("Authorization") String authorization);
 }
