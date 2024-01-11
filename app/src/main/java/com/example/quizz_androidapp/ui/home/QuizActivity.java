@@ -132,7 +132,7 @@
                 btnSubmit.setText("Hoàn thành bài thi");
                 goResult();
             } else {
-                btnSubmit.setText("Tiếp tục");
+                btnSubmit.setText("Câu tiếp theo");
             }
         }
 
@@ -140,43 +140,51 @@
         public void onClick(View v) {
             if (v != null) {
                 int viewId = v.getId();
-
-                if (viewId == R.id.tv_optionOne) {
-                    if (tvOptionOne != null) {
-                        selectedOptionView(tvOptionOne, mQuestionList.get(mCurrentPosition - 1).getAnswer().get(0));
-                    }
-                } else if (viewId == R.id.tv_optionTwo) {
-                    if (tvOptionTwo != null) {
-                        selectedOptionView(tvOptionTwo, mQuestionList.get(mCurrentPosition - 1).getAnswer().get(1));
-                    }
-                } else if (viewId == R.id.tv_optionThree) {
-                    if (tvOptionThree != null) {
-                        selectedOptionView(tvOptionThree, mQuestionList.get(mCurrentPosition - 1).getAnswer().get(2));
-                    }
-                } else if (viewId == R.id.tv_optionFour) {
-                    if (tvOptionFour != null) {
-                        selectedOptionView(tvOptionFour, mQuestionList.get(mCurrentPosition - 1).getAnswer().get(3));
-                    }
+                if (viewId == R.id.tv_optionOne || viewId == R.id.tv_optionTwo || viewId == R.id.tv_optionThree || viewId == R.id.tv_optionFour) {
+                    handleOptionClick((TextView) v);
                 } else if (viewId == R.id.btn_submit) {
-                    if (mSelectedOptionNumber == 0) {
-                        mCurrentPosition++;
-                        if (mCurrentPosition <= mQuestionList.size()) {
-                            setQuestion();
-                        } else {
-                            Toast.makeText(this, "You're Done", Toast.LENGTH_SHORT).show();
-                            Question question = mQuestionList.get(mCurrentPosition - 1);
-                            if (question.getCorrectAnswer().equals(mQuestionList.get(mCurrentPosition - 1).getAnswer().get(mSelectedOptionNumber - 1))) {
-                                correctAnswer++;
-                            }
-                            if (mCurrentPosition == mQuestionList.size()) {
-                                btnSubmit.setText("Hoàn thành bài thi");
-                                goResult();
-                            } else {
-                                btnSubmit.setText("Câu tiếp theo");
-                            }
-                        }
-                    }mSelectedOptionNumber = 0;
+                    handleSubmitButtonClick();
                 }
+            }
+        }
+
+        private void handleOptionClick(TextView clickedOption) {
+            if (mSelectedOptionNumber == 0) {
+                selectedOptionView(clickedOption, mQuestionList.get(mCurrentPosition - 1).getAnswer().get(getOptionIndex(clickedOption)));
+            }
+        }
+
+        private void handleSubmitButtonClick() {
+            if (mSelectedOptionNumber == 0) {
+                Toast.makeText(this, "Vui lòng chọn một lựa chọn trước khi đi tiếp.", Toast.LENGTH_SHORT).show();
+            } else {
+                Question question = mQuestionList.get(mCurrentPosition - 1);
+                if (question.getCorrectAnswer().equals(mQuestionList.get(mCurrentPosition - 1).getAnswer().get(mSelectedOptionNumber - 1))) {
+                    correctAnswer++;
+                }
+
+                mCurrentPosition++;
+                if (mCurrentPosition <= mQuestionList.size()) {
+                    setQuestion();
+                } else {
+                    btnSubmit.setText("Hoàn thành bài thi");
+                    goResult();
+                }
+                mSelectedOptionNumber = 0;
+            }
+        }
+
+        private int getOptionIndex(TextView option) {
+            if (option.getId() == R.id.tv_optionOne) {
+                return 0;
+            } else if (option.getId() == R.id.tv_optionTwo) {
+                return 1;
+            } else if (option.getId() == R.id.tv_optionThree) {
+                return 2;
+            } else if (option.getId() == R.id.tv_optionFour) {
+                return 3;
+            } else {
+                return -1;
             }
         }
 

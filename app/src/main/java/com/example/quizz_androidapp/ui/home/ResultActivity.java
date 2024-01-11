@@ -27,14 +27,14 @@ public class ResultActivity extends AppCompatActivity {
 
         Bundle bundleReceive = getIntent().getExtras();
         if(bundleReceive != null){
-//            correct = (int) bundleReceive.get("correct answer");
-//            wrong = (int) bundleReceive.get("wrong answer");
+            correct = bundleReceive.getInt("correct answer");
+            wrong = bundleReceive.getInt("wrong answer");
             subject = (String) bundleReceive.get("subject name");
             name = (String) bundleReceive.get("user first name");
         }
         tvSubject.setText(subject);
-//        tvCorrect.setText(correct);
-//        tvWrong.setText(wrong);
+        tvCorrect.setText(String.valueOf(correct));
+        tvWrong.setText(String.valueOf(wrong));
         String tks = "Làm tốt lắm, " + name;
         tvWelldone.setText(tks);
     }
