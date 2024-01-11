@@ -97,7 +97,11 @@ public class HomeActivity extends AppCompatActivity {
 
     private void clickHistory(){
         cvHistory.setOnClickListener(view -> {
-            startActivity(new Intent(HomeActivity.this, HistoryActivity.class));
+            Intent intentHistory = new Intent(HomeActivity.this, HistoryActivity.class);
+            Bundle bundleHistory = new Bundle();
+            bundleHistory.putSerializable("user id", userID);
+            intentHistory.putExtras(bundleHistory);
+            startActivity(intentHistory);
         });
     }
 

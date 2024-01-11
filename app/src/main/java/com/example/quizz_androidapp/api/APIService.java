@@ -7,13 +7,14 @@ import com.example.quizz_androidapp.data.model.login.LoginRequest;
 import com.example.quizz_androidapp.data.model.login.RegisterRequest;
 import com.example.quizz_androidapp.data.model.login.UserResponse;
 import com.example.quizz_androidapp.data.model.logout.LogoutResponse;
-import com.example.quizz_androidapp.data.model.question.QuestionResponse;
 import com.example.quizz_androidapp.data.model.result.Result;
 import com.example.quizz_androidapp.data.model.result.ResultRequest;
 import com.example.quizz_androidapp.data.model.result.ResultResponse;
 import com.example.quizz_androidapp.data.model.subject.SubjectResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -23,7 +24,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 public interface APIService {
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
@@ -63,5 +63,5 @@ public interface APIService {
 
     //Link: https://hptgroup.me/api/v1/result/student/659a3d7f2ba5ca2993f4e765
     @GET("result/student/{id}")
-    Call<Result> getResultByStudentID(@Header("Authorization") String authorization, @Path("id") String id);
+    Call<List<Result>> getResultByStudentID(@Header("Authorization") String authorization, @Path("id") String id);
 }
