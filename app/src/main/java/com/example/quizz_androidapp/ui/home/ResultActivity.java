@@ -14,8 +14,8 @@ import java.util.ArrayList;
 
 public class ResultActivity extends AppCompatActivity {
     TextView tvSubject, tvCorrect, tvWrong, tvWelldone;
-    String subject, name;
-    int correct, wrong;
+    String subject, name, userID, examID;
+    int correct, wrong, score;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +31,18 @@ public class ResultActivity extends AppCompatActivity {
             wrong = bundleReceive.getInt("wrong answer");
             subject = (String) bundleReceive.get("subject name");
             name = (String) bundleReceive.get("user first name");
+
+            userID = (String) bundleReceive.get("user id");
+            examID = (String) bundleReceive.get("exam id");
+            score = correct * 10;
         }
         tvSubject.setText(subject);
         tvCorrect.setText(String.valueOf(correct));
         tvWrong.setText(String.valueOf(wrong));
         String tks = "Làm tốt lắm, " + name;
         tvWelldone.setText(tks);
+
+
     }
 
     public void initView(){

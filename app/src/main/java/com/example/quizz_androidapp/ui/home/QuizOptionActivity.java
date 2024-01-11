@@ -26,7 +26,7 @@ import retrofit2.Response;
 
 public class QuizOptionActivity extends AppCompatActivity {
     TextView tvDiaLy, tvGDCD, tvLichSu;
-    String userFN;
+    String userFN, userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +37,7 @@ public class QuizOptionActivity extends AppCompatActivity {
         Bundle bundleReceive = getIntent().getExtras();
         if(bundleReceive != null){
             userFN = (String) bundleReceive.get("user first name");
+            userID = (String) bundleReceive.get("user id");
         }
     }
 
@@ -146,6 +147,7 @@ public class QuizOptionActivity extends AppCompatActivity {
                             Bundle bundle = new Bundle();
                             bundle.putSerializable("subject name", subjectName);
                             bundle.putSerializable("user first name", userFN);
+                            bundle.putSerializable("user id", userID);
                             bundle.putSerializable("exam", exam);
                             intent.putExtras(bundle);
                             startActivity(intent);

@@ -40,7 +40,7 @@
         ProgressBar progressBar ;
         TextView tvProgressBar, tvQuestion, tvOptionOne, tvOptionTwo, tvOptionThree, tvOptionFour, tvTimer;
         Button btnSubmit;
-        String subjectName, userFN;
+        String subjectName, userFN, userID, examID;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -57,9 +57,11 @@
                 Exam exam  = (Exam) bundleReceive.get("exam");
                 subjectName = (String) bundleReceive.get("subject name");
                 userFN = (String) bundleReceive.get("user first name");
+                userID = (String) bundleReceive.get("user id");
                 if(exam != null){
                     mQuestionList = (ArrayList<Question>) exam.getQuestions();
                     setQuestion();
+                    examID = exam.getIdExam();
                 }
             }
         }
@@ -97,6 +99,8 @@
                     bundle.putSerializable("wrong answer",wrongAnswer);
                     bundle.putSerializable("subject name", subjectName);
                     bundle.putSerializable("user first name", userFN);
+                    bundle.putSerializable("user id", userID);
+                    bundle.putSerializable("exam id", examID);
                     intent.putExtras(bundle);
                     startActivity(intent);
                     finish();
