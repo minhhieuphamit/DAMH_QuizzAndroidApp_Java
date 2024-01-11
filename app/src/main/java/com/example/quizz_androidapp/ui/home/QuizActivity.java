@@ -41,6 +41,7 @@
         TextView tvProgressBar, tvQuestion, tvOptionOne, tvOptionTwo, tvOptionThree, tvOptionFour, tvTimer;
         Button btnSubmit;
         String subjectName, userFN, userID, examID;
+        boolean[] optionSelectedState = {false, false, false, false};
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +67,7 @@
             }
         }
 
-        public void initView(){
+        private void initView(){
             progressBar = findViewById(R.id.progressBar);
             tvProgressBar = findViewById(R.id.tv_progressBar);
             tvQuestion = findViewById(R.id.tv_question);
@@ -153,8 +154,16 @@
         }
 
         private void handleOptionClick(TextView clickedOption) {
-            if (mSelectedOptionNumber == 0) {
-                selectedOptionView(clickedOption, mQuestionList.get(mCurrentPosition - 1).getAnswer().get(getOptionIndex(clickedOption)));
+            int optionIndex = getOptionIndex(clickedOption);
+
+            if (!optionSelectedState[optionIndex]) {
+                selectedOptionView(clickedOption, mQuestionList.get(mCurrentPosition - 1).getAnswer().get(optionIndex));
+                mSelectedOptionNumber = optionIndex + 1;
+                optionSelectedState[optionIndex] = true;
+            } else {
+                defaultOptionView();
+                mSelectedOptionNumber = 0;
+                optionSelectedState[optionIndex] = false;
             }
         }
 
@@ -171,11 +180,15 @@
                 if (mCurrentPosition <= mQuestionList.size()) {
                     setQuestion();
                 } else {
-                    btnSubmit.setText("Hoàn thành bài thi");
-                    goResult();
+                    showResultScreen();
                 }
                 mSelectedOptionNumber = 0;
             }
+        }
+
+        private void showResultScreen() {
+            btnSubmit.setText("Hoàn thành bài thi");
+            goResult();
         }
 
         private int getOptionIndex(TextView option) {
@@ -208,18 +221,20 @@
             if (tvOptionFour != null) {
                 options.add(tvOptionFour);
             }
-            for (TextView i : options) {
-                i.setTextColor(Color.parseColor("#7A8089"));
-                i.setTypeface(Typeface.DEFAULT);
-                i.setBackground(ContextCompat.getDrawable(this, R.drawable.option_choice));
+
+            for (int i = 0; i < options.size(); i++) {
+                TextView option = options.get(i);
+                option.setTextColor(Color.parseColor("#7A8089"));
+                option.setTypeface(Typeface.DEFAULT);
+                option.setBackground(ContextCompat.getDrawable(this, R.drawable.option_choice));
+                optionSelectedState[i] = false;
             }
         }
 
         private void selectedOptionView(TextView tv, String selectedAnswer) {
             defaultOptionView();
-            mSelectedOptionNumber = mQuestionList.get(mCurrentPosition - 1).getAnswer().indexOf(selectedAnswer) + 1;
             tv.setTextColor(Color.parseColor("#363A43"));
-            tv.setTypeface(tv.getTypeface(), Typeface.BOLD);
+            tv.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
             tv.setBackground(ContextCompat.getDrawable(this, R.drawable.option_choice_selected));
         }
 
