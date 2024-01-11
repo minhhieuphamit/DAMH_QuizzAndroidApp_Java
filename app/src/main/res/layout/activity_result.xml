@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:text="Final Result"
+        android:text="Kết quả bài thi"
         style="@style/titleTextStyle"
         app:layout_constraintBottom_toBottomOf="@+id/imageViewFinalResultQuiz"
         app:layout_constraintStart_toEndOf="@+id/imageViewFinalResultQuiz"
@@ -39,7 +39,7 @@
         android:textColor="@color/black"
         android:textStyle="bold"
         android:textSize="18sp"
-        tools:text="Well Done, Hud2456"
+        tools:text="Chúc mừng bạn đã vượt qua bài thi"
         app:layout_constraintStart_toStartOf="@+id/imageViewFinalResultQuiz"
         app:layout_constraintTop_toBottomOf="@+id/result_" />
 
@@ -49,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:text="Subcject:"
+        android:text="Môn:"
         app:layout_constraintStart_toStartOf="@+id/tvWellDone"
         app:layout_constraintTop_toBottomOf="@+id/tvWellDone" />
 
@@ -58,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Correct:"
+        android:text="Số câu đúng:"
         style="@style/text_heading"
         app:layout_constraintStart_toStartOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
@@ -68,7 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Incorrect:"
+        android:text="Số câu sai:"
         style="@style/text_heading"
         app:layout_constraintStart_toStartOf="@+id/textView11"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
