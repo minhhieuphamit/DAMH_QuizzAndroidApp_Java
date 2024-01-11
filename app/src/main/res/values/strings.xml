@@ -16,10 +16,10 @@
     <string name="dialog_quit_game">Bạn muốn đăng xuất ?</string>
     <string name="no">No\n</string>
     <string name="yes">Yes\n</string>
-    <string name="rule_1">Bài kiểm tra sẽ có 10 câu hỏi</string>
-    <string name="rule_2">Luật thứ 2</string>
-    <string name="rule_3">Luật thứ 3</string>
-    <string name="rule_4">Luật thứ 4</string>
+    <string name="rule_1">Bài kiểm tra sẽ có 10 câu hỏi và sẽ có 10 phút làm bài</string>
+    <string name="rule_2">Chuẩn bị đầy đủ trước khi vào bài thi</string>
+    <string name="rule_3">Không nên gian lận từ nguồn khác khi làm bài thi</string>
+    <string name="rule_4">Được phép ghi chú trong quá trình làm bài</string>
     <string name="mathematics">Mathematics</string>
 
 </resources>

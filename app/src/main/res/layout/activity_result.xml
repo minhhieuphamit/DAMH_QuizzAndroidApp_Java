@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.math.ResultMathActivity">
+    tools:context=".ui.home.ResultActivity">
 
 
     <ImageView
@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:text="Final Result"
+        android:text="Kết quả bài thi"
         style="@style/titleTextStyle"
         app:layout_constraintBottom_toBottomOf="@+id/imageViewFinalResultQuiz"
         app:layout_constraintStart_toEndOf="@+id/imageViewFinalResultQuiz"
@@ -39,7 +39,7 @@
         android:textColor="@color/black"
         android:textStyle="bold"
         android:textSize="18sp"
-        tools:text="Well Done, Hud2456"
+        tools:text="Chúc mừng bạn đã vượt qua bài thi"
         app:layout_constraintStart_toStartOf="@+id/imageViewFinalResultQuiz"
         app:layout_constraintTop_toBottomOf="@+id/result_" />
 
@@ -49,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:text="Subcject:"
+        android:text="Môn:"
         app:layout_constraintStart_toStartOf="@+id/tvWellDone"
         app:layout_constraintTop_toBottomOf="@+id/tvWellDone" />
 
@@ -58,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Correct:"
+        android:text="Số câu đúng:"
         style="@style/text_heading"
         app:layout_constraintStart_toStartOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
@@ -68,24 +68,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Incorrect:"
+        android:text="Số câu sai:"
         style="@style/text_heading"
         app:layout_constraintStart_toStartOf="@+id/textView11"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
 
-    <TextView
-        android:id="@+id/textView15"
-        style="@style/text_heading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Date:"
-        app:layout_constraintStart_toStartOf="@+id/textView12"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+<!--    <TextView-->
+<!--        android:id="@+id/textView15"-->
+<!--        style="@style/text_heading"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:text="Date:"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/textView12"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/textView12" />-->
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/tv_subject_result"
         android:layout_marginStart="40dp"
         style="@style/text_value_heading"
         android:layout_width="wrap_content"
@@ -93,7 +93,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView10"
         app:layout_constraintStart_toEndOf="@+id/textView10"
         app:layout_constraintTop_toTopOf="@+id/textView10"
-        android:text="Math" />
+        tools:text="Math" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnFinishQuiz"
@@ -106,39 +106,41 @@
         android:singleLine="true"
         android:textAllCaps="false"
         android:text="Finish"
+        android:textStyle="bold"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView19"
+        android:id="@+id/tv_correct_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="3"
         style="@style/text_value_heading"
         app:layout_constraintBottom_toBottomOf="@+id/textView11"
-        app:layout_constraintStart_toStartOf="@+id/textView16"
+        app:layout_constraintStart_toStartOf="@+id/tv_subject_result"
         app:layout_constraintTop_toTopOf="@+id/textView11" />
 
     <TextView
-        android:id="@+id/textView27"
+        android:id="@+id/tv_wrong_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="2"
         style="@style/text_value_heading"
         app:layout_constraintBottom_toBottomOf="@+id/textView12"
-        app:layout_constraintStart_toStartOf="@+id/textView19"
+        app:layout_constraintStart_toStartOf="@+id/tv_correct_result"
         app:layout_constraintTop_toTopOf="@+id/textView12" />
 
 
-    <TextView
-        android:id="@+id/textView30"
-        style="@style/text_value_heading"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/textView15"
-        app:layout_constraintStart_toStartOf="@+id/textView27"
-        app:layout_constraintTop_toTopOf="@+id/textView15"
-        tools:text="27 Oct 2020 09:15 AM" />
+<!--    <TextView-->
+<!--        android:id="@+id/tv_date_result"-->
+<!--        style="@style/text_value_heading"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/textView15"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/tv_wrong_result"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/textView15"-->
+<!--        tools:text="27 Oct 2020 09:15 AM" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

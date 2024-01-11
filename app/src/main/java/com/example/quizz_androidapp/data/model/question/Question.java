@@ -1,78 +1,108 @@
 package com.example.quizz_androidapp.data.model.question;
 
-public class Question {
-    int id;
-    String question;
-    String optionOne;
-    String optionTwo;
-    String optionThree;
-    String optionFour;
-    int correctAnswer;
+import com.google.gson.annotations.SerializedName;
 
-    public Question(int id, String question, String optionOne, String optionTwo, String optionThree, String optionFour, int correctAnswer) {
-        this.id = id;
-        this.question = question;
-        this.optionOne = optionOne;
-        this.optionTwo = optionTwo;
-        this.optionThree = optionThree;
-        this.optionFour = optionFour;
+import java.io.Serializable;
+import java.util.List;
+
+public class Question implements Serializable {
+
+    public Question(String subjectId, String content, List<String> answer, String difficulty, String correctAnswer, String id, String createAt, String updateAt) {
+        this.subjectId = subjectId;
+        this.content = content;
+        this.answer = answer;
+        this.difficulty = difficulty;
         this.correctAnswer = correctAnswer;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
         this.id = id;
+        this.createAt = createAt;
+        this.updateAt = updateAt;
     }
 
-    public String getQuestion() {
-        return question;
+    @SerializedName("_id")
+    private String id;
+
+    @SerializedName("subject_id")
+    private String subjectId;
+
+    @SerializedName("content")
+    private String content;
+
+    @SerializedName("answer")
+    private List<String> answer;
+
+    @SerializedName("difficulty")
+    private String difficulty;
+
+    @SerializedName("correct_answer")
+    private String correctAnswer;
+
+    @SerializedName("createdAt")
+    private String createAt;
+
+    @SerializedName("updatedAt")
+    private String updateAt;
+
+    public String getSubjectId() {
+        return subjectId;
     }
 
-    public void setQuestion(String question) {
-        this.question = question;
+    public void setSubjectId(String subjectId) {
+        this.subjectId = subjectId;
     }
 
-    public String getOptionOne() {
-        return optionOne;
+    public String getContent() {
+        return content;
     }
 
-    public void setOptionOne(String optionOne) {
-        this.optionOne = optionOne;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public String getOptionTwo() {
-        return optionTwo;
+    public List<String> getAnswer() {
+        return answer;
     }
 
-    public void setOptionTwo(String optionTwo) {
-        this.optionTwo = optionTwo;
+    public void setAnswer(List<String> answer) {
+        this.answer = answer;
     }
 
-    public String getOptionThree() {
-        return optionThree;
+    public String getDifficulty() {
+        return difficulty;
     }
 
-    public void setOptionThree(String optionThree) {
-        this.optionThree = optionThree;
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
     }
 
-    public String getOptionFour() {
-        return optionFour;
-    }
-
-    public void setOptionFour(String optionFour) {
-        this.optionFour = optionFour;
-    }
-
-    public int getCorrectAnswer() {
+    public String getCorrectAnswer() {
         return correctAnswer;
     }
 
-    public void setCorrectAnswer(int correctAnswer) {
+    public void setCorrectAnswer(String correctAnswer) {
         this.correctAnswer = correctAnswer;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getCreateAt() {
+        return createAt;
+    }
+
+    public void setCreateAt(String createAt) {
+        this.createAt = createAt;
+    }
+
+    public String getUpdateAt() {
+        return updateAt;
+    }
+
+    public void setUpdateAt(String updateAt) {
+        this.updateAt = updateAt;
+    }
 }

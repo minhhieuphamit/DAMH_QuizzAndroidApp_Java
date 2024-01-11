@@ -28,10 +28,10 @@
             android:name=".ui.home.RuleActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.home.math.ResultMathActivity"
+            android:name=".ui.home.ResultActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.home.math.PreTestMathActivity"
+            android:name=".ui.home.PreTestActivity"
             android:exported="false" />
         <activity
             android:name=".ui.MainActivity"
@@ -44,7 +44,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.home.math.MathQuizActivity"
+            android:name=".ui.home.QuizActivity"
             android:exported="false" />
         <activity
             android:name=".ui.home.QuizOptionActivity"

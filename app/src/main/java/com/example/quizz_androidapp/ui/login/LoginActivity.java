@@ -1,5 +1,6 @@
 package com.example.quizz_androidapp.ui.login;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -23,6 +24,8 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
     EditText email, password;
     Button btnLogin, btnRegister;
+
+    private ProgressDialog progressDialog;
 
 
     @Override
@@ -56,6 +59,12 @@ public class LoginActivity extends AppCompatActivity {
         editor.apply();
     }
     private void loginUser() {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Đang đăng nhập...");
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
         String enteredEmail = email.getText().toString().trim();
         String enteredPassword = password.getText().toString().trim();
 
@@ -65,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         if (!isValidEmail(enteredEmail)) {
+            progressDialog.dismiss();
             Toast.makeText(this, "Hãy nhập đúng định dạng email", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -73,6 +83,7 @@ public class LoginActivity extends AppCompatActivity {
         call.enqueue(new Callback<UserResponse>() {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                progressDialog.dismiss();
                 if (response.isSuccessful()) {
                     User user = response.body().getData();
                     if (user != null) {
@@ -96,6 +107,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
+                progressDialog.dismiss();
                 Toast.makeText(LoginActivity.this, "Kết nối sever thất bại", Toast.LENGTH_SHORT).show();
             }
         });
