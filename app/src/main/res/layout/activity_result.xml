@@ -74,15 +74,15 @@
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
 
-    <TextView
-        android:id="@+id/textView15"
-        style="@style/text_heading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Date:"
-        app:layout_constraintStart_toStartOf="@+id/textView12"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+<!--    <TextView-->
+<!--        android:id="@+id/textView15"-->
+<!--        style="@style/text_heading"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:text="Date:"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/textView12"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/textView12" />-->
 
     <TextView
         android:id="@+id/tv_subject_result"
@@ -133,14 +133,14 @@
         app:layout_constraintTop_toTopOf="@+id/textView12" />
 
 
-    <TextView
-        android:id="@+id/tv_date_result"
-        style="@style/text_value_heading"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/textView15"
-        app:layout_constraintStart_toStartOf="@+id/tv_wrong_result"
-        app:layout_constraintTop_toTopOf="@+id/textView15"
-        tools:text="27 Oct 2020 09:15 AM" />
+<!--    <TextView-->
+<!--        android:id="@+id/tv_date_result"-->
+<!--        style="@style/text_value_heading"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/textView15"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/tv_wrong_result"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/textView15"-->
+<!--        tools:text="27 Oct 2020 09:15 AM" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
