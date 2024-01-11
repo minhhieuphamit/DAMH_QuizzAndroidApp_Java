@@ -50,7 +50,6 @@ public class PreTestActivity extends AppCompatActivity {
                             if (response.isSuccessful()) {
                                 Exam exam = response.body().getData().getExam();
                                 if (exam != null) {
-                                    Toast.makeText(PreTestActivity.this, "Lấy dữ liệu câu hỏi thành công", Toast.LENGTH_SHORT).show();
                                     findViewById(R.id.btn_StartExam).setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
