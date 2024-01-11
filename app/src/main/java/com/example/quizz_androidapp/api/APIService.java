@@ -8,6 +8,7 @@ import com.example.quizz_androidapp.data.model.login.RegisterRequest;
 import com.example.quizz_androidapp.data.model.login.UserResponse;
 import com.example.quizz_androidapp.data.model.logout.LogoutResponse;
 import com.example.quizz_androidapp.data.model.question.QuestionResponse;
+import com.example.quizz_androidapp.data.model.result.Result;
 import com.example.quizz_androidapp.data.model.result.ResultRequest;
 import com.example.quizz_androidapp.data.model.result.ResultResponse;
 import com.example.quizz_androidapp.data.model.subject.SubjectResponse;
@@ -59,4 +60,8 @@ public interface APIService {
     //Link: https://hptgroup.me/api/v1/auth/logout
     @POST("logout")
     Call<LogoutResponse> logout(@Header("Authorization") String authorization);
+
+    //Link: https://hptgroup.me/api/v1/result/student/659a3d7f2ba5ca2993f4e765
+    @GET("result/student/{id}")
+    Call<Result> getResultByStudentID(@Header("Authorization") String authorization, @Path("id") String id);
 }
